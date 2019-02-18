@@ -1,0 +1,53 @@
+---
+- name: install sudo
+  become: yes
+  package:
+    name: sudo
+    state: present
+
+- name: wheel NOPASSWD
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: drp group
+  become: yes
+  group:
+    name: drpgroup
+    state: present
+
+- name: drp user
+  become: yes
+  user:
+    name: drpuser
+    comment: drpuser
+    groups: "drpgroup, wheel"
+    create_home: yes
+    shell: /bin/bash
+
+- name: drpuser .ssh dir
+  become: yes
+  file:
+    path: ~drpuser/.ssh
+    state: directory
+    mode: 0700
+    owner: drpuser
+    group: drpgroup
+
+
+- name: drpuser authorized keys
+  become: yes
+  lineinfile:
+    path: ~drpuser/.ssh/authorized_keys
+    line: "{{ lookup('file', 'secrets/pubkey.for.drpuser') }}"
+    create: yes
+    mode: 0600
+    owner: drpuser
+    group: drpgroup
+
+
+
