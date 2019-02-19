@@ -19,3 +19,18 @@
     validate: '/usr/sbin/sshd -T -f %s'
   notify: restart ssh
 
+# Will need epel to get p7zip.
+- name: add epel
+  become: yes
+  package:
+    name:
+        - epel-release
+
+- name: install required packages
+  become: yes
+  package:
+    name:
+        - p7zip
+        - bsdtar
+        - aria2
+        - jq
