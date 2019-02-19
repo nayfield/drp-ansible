@@ -14,18 +14,12 @@
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
-- name: drp group
-  become: yes
-  group:
-    name: drpgroup
-    state: present
-
 - name: drp user
   become: yes
   user:
     name: drpuser
     comment: drpuser
-    groups: "drpgroup, wheel"
+    groups: "wheel"
     create_home: yes
     shell: /bin/bash
 
@@ -36,7 +30,7 @@
     state: directory
     mode: 0700
     owner: drpuser
-    group: drpgroup
+    group: drpuser
 
 
 - name: drpuser authorized keys
@@ -47,7 +41,7 @@
     create: yes
     mode: 0600
     owner: drpuser
-    group: drpgroup
+    group: drpuser
 
 
 
