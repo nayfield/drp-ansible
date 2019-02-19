@@ -1,3 +1,49 @@
 ---
-- name: whoami
-  command: whoami
+- name: drp directory
+  file:
+    path: ~/drp
+    state: directory
+    mode: 0770
+
+- name: dl directory
+  file:
+    path: ~/tarballs
+    state: directory
+    mode: 0770
+
+- name: drp install directory
+  file:
+    path: ~/drp-install
+    state: directory
+    mode: 0770
+
+
+#  So you wouldn't do this in production.
+#- name: get installer
+#  get_url:
+#    dest: ~/drp/install.sh
+#    url: https://get.rebar.digital/stable
+#
+
+- name: get drp tarball
+  get_url:
+    url: https://github.com/digitalrebar/provision/archive/v{{ drp_version }}.tar.gz
+    dest: ~/tarballs/v{{ drp_version }}.tar.gz
+
+- name: unpack drp
+  unarchive:
+    remote_src: yes
+    src: ~/tarballs/v{{ drp_version }}.tar.gz
+    dest: ~/drp-install/
+    creates: ~/drp-install/provision-{{ drp_version }}
+
+
+# things the installer does
+#  needs to be done after this in a post root
+# initfile="assets/startup/dr-provision.service"
+# initdest="/etc/systemd/system/dr-provision.service"
+# starter="sudo systemctl daemon-reload && sudo systemctl start dr-provision"
+# enabler="sudo systemctl daemon-reload && sudo systemctl enable dr-provision
+#
+#
+#

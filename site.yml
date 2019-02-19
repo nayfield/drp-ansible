@@ -2,6 +2,10 @@
 
 - hosts: drpservers
   remote_user: drpuser
+  vars:
+    # This is the Digital Rebar Provision version to get
+    # TODO - changing this does a reinstall?
+    drp_version: 3.12.0
   roles:
         - role: setup-drp
           tags:
