@@ -21,11 +21,11 @@ This playbook makes digital rebar provision servers
 1. add the hostname to the drpservers section in hosts
 2. for each host added, run the 'firstrun' tag (use the root password)
 
-# $ ansible-playbook t firstrun -e "ansible_ssh_user=root" -k site.yml -l <hostname>
+ $ ansible-playbook t firstrun -e "ansible_ssh_user=root" -k site.yml -l <hostname>
 
 3. run the whole playbook on everybody
 
-# $ ansible-playbook site.yml
+ $ ansible-playbook site.yml
 
 
 ## adding more drpservers, now or later
