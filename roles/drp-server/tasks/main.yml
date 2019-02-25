@@ -135,14 +135,6 @@
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows/centos7.json
 
-# This might need better 'creates' or some other valid check
-- name: set non-destructive discover as default
-  command: |-
-    ./drpcli prefs set defaultWorkflow discovery unknownBootEnv discovery defaultBootEnv sledgehammer defaultStage discover
-  args:
-    chdir: ~/go/src/github.com/digitalrebar/provision
-    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences/defaultBootEnv.json
-
 - name: networks json blob
   copy:
     src: files/networks.json
@@ -155,6 +147,16 @@
   args:
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets/privnet.json
+
+
+# This might need better 'creates' or some other valid check
+- name: set non-destructive discover as default
+  command: |-
+    ./drpcli prefs set defaultWorkflow discovery unknownBootEnv discovery defaultBootEnv sledgehammer defaultStage discover
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences/defaultBootEnv.json
+
 
 # Doing this because I'm still playing.  I don't like humans on machines, USE API!!
 #
