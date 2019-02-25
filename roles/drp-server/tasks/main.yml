@@ -73,9 +73,13 @@
     enabled: yes
     state: started
 
+
+
+### Everything below this line is a candidate for setting up the node
+### Using the API, and keeping hoomans out of the box
+
 # because it is running as root we need this.
 # These are just the dirs we need to check into with 'creates:'
-# you should use the APIs
 - name: visibility into directories
   become: yes
   file:
@@ -94,6 +98,7 @@
 # the saas-content/default.yaml for real content won't have unneeded arch
 # note you need to restart drp-server if you change the yaml
 # It will also be much faster with local content
+# TODO:  is this doable via api /bootenvs/<name>/actions/uploadiso ??
 
 - name: dr get sledgehammer
   command: ./drpcli bootenvs uploadiso sledgehammer
@@ -106,6 +111,10 @@
   args:
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/tftpboot/centos-7
+
+#######################
+# This section seems to be entirely doable via api calls as well
+#
 
 - name: create discovery workflow
   command: |-
@@ -157,6 +166,8 @@
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences/defaultBootEnv.json
 
+#
+#######################
 
 # Doing this because I'm still playing.  I don't like humans on machines, USE API!!
 #
