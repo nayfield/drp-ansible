@@ -87,6 +87,7 @@
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/stages
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences
 
 # TODO turn of arm/aarch64 here?
@@ -113,9 +114,23 @@
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows/discovery.json
 
+# This is a copy of centos-7-install with the drp repos step removed.
+- name: centos7 norepos file copy
+  copy:
+    src: files/nor
+    dest: ~/centos7-nor-stages.json
+    mode: 0644
+
+- name: stages create centos-7-install-nor
+  shell: |-
+    cat ~/centos7-nor-stages.json | ./drpcli stages create - 
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/stages/centos-7-install-nor.json
+
 - name: create centos7 workflow
   command: |-
-    ./drpcli workflows create '{ "Name": "centos7", "Stages": [ "centos-7-install", "complete" ] } '
+    ./drpcli workflows create '{ "Name": "centos7", "Stages": [ "centos-7-install-nor", "complete" ] } '
   args:
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows/centos7.json
@@ -140,7 +155,6 @@
   args:
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets/privnet.json
- 
 
 # Doing this because I'm still playing.  I don't like humans on machines, USE API!!
 #

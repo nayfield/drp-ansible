@@ -1,0 +1,27 @@
+{
+  "Available": true,
+  "BootEnv": "centos-7-install",
+  "Bundle": "drp-community-content",
+  "Description": "CentOS 7 install stages.  References the latest CentOS 7 release",
+  "Documentation": "",
+  "Endpoint": "",
+  "Errors": [],
+  "Meta": {
+    "color": "yellow",
+    "icon": "download",
+    "title": "Digital Rebar Community Content"
+  },
+  "Name": "centos-7-install-nor",
+  "OptionalParams": [],
+  "Profiles": [],
+  "ReadOnly": true,
+  "Reboot": false,
+  "RequiredParams": [],
+  "RunnerWait": true,
+  "Tasks": [
+    "set-hostname",
+    "ssh-access"
+  ],
+  "Templates": [],
+  "Validated": true
+}
