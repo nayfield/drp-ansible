@@ -6,22 +6,32 @@ case "$1" in
     list)
         drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow + " " + .Stage'
         ;;
-    listdisc)
-        drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow' |grep discovery$
+    listd)
+        drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow' |grep discovery
         ;;
     build)
         drpcli machines workflow $2 $buildtgt
         ;;
-
-    #buildall
-    #delete
-    #deleteall
-
+    delete)
+        drpcli machines destroy $2 
+        ;;
+    buildall)
+        for mach in $(drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow' \
+                      | grep discovery$ | awk '{print $1}' ) ; do
+            drpcli machines workflow $mach $buildtgt
+        done
+        ;;
+    deleteall)
+        for mach in $(drpcli machines list | jq -r '.[].Uuid'); do
+            drpcli machines destroy $mach 
+        done
+        ;;
+        
 
 
 
     *)
-        echo "Usage: $0 {list|listdisc|build|-buildall|-delete|-deleteall}"
+        echo "Usage: $0 {list|listd|build|buildall|delete|deleteall}"
         exit 1
 
 esac
