@@ -69,17 +69,14 @@ start making roles in a new branch, and do step #3 ...
 $ for i in $(seq 1 9); do ./testarmy.sh ; done
 ```
 
-2. Wait a bit until they boot and register (on your drp server)
+2. Wait a bit until they boot and register - then start building (on your drp server)
 ```
 $ sleep 180 && dodrp list
-```
-
-3. Once sledgehammer has captured them, make them install
-```
 $ dodrp buildall
 ```
 
-4. There is no step four.  But if you want to clean stuff up:
+3. There is no step three.  But if you want to clean stuff up:
+
 On your host:
 ```
 $ for i in $(seq 1 10); do sudo virsh destroy bootmonkey${i} ; done
