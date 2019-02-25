@@ -33,6 +33,7 @@ This playbook makes digital rebar provision servers
 
 ## What do I need to change?
 1. Your network definitions.  And decide how you are going to run this ... 
+
 ..* once they're built, depend on this to be running and have the uuid in complete state so it doesn't boot to sledgehammer?
 ..* create a task in the complete stage to turn off pxeboot ... or at least have pxe after disk (only if disk is not bootable)
 ..* build subnets out completely and remove dhcp helper that points here?
