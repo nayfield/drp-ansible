@@ -58,7 +58,7 @@ Step 3 sounds good
 
 ### Why can't I log in to the drpserver anymore?  I have the root password!
 
-![nopower](https://i.kym-cdn.com/photos/images/original/000/913/758/a12.jpg :You have no power here")
+![nopower](https://i.kym-cdn.com/photos/images/original/000/913/758/a12.jpg "You have no power here")
 
 ### No, seriously ... let me back in!  I need to do my job now that the automation ran!
 start making roles in a new branch, and do step #3 ... 
