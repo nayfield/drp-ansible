@@ -31,27 +31,35 @@ This playbook makes digital rebar provision servers
  $ ansible-playbook site.yml
 ```
 
+## What do I need to change?
+1. Your network definitions.  And decide how you are going to run this ... 
+..* once they're built, depend on this to be running and have the uuid in complete state so it doesn't boot to sledgehammer?
+..* create a task in the complete stage to turn off pxeboot ... or at least have pxe after disk (only if disk is not bootable)
+..* build subnets out completely and remove dhcp helper that points here?
+..* something else?  or combination of above?
 
-## adding more drpservers, now or later
+2. Your own OS images, integrated with kickstarts and pushing into your post-buildout workflows ... 
+
+3. more fancy ipmi tasks and stages
+
+4. why not do something useful instead of sledgehammer-wait if you've got the machines powered on?  
+
+## Sorta faq
+
+### adding more drpservers, now or later
 GOTO step 0
 
-## updating drpservers, checking configuration
+### updating drpservers, checking configuration
 Do step 3
 
-## I need something to do often, like daily or hourly
+### I need something to do often, like daily or hourly
 Step 3 sounds good
 
-## Why can't I log in to the drpserver anymore?  I have the root password!
+### Why can't I log in to the drpserver anymore?  I have the root password!
 Cue Theoden:  You have no power here
 
-## No, seriously ... let me back in!  I need to do my job now that the automation ran!
+### No, seriously ... let me back in!  I need to do my job now that the automation ran!
 start making roles in a new branch, and do step #3 ... 
-
-## I'll have to change the way I do my job ... I just wanted to skip all the setup...
-That's right.  
-
-Please realize that type of automation - that helps you fast-forward
-over a tedious part of your job - has already devalued your job.
 
 
 
