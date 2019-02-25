@@ -34,3 +34,28 @@
         - bsdtar
         - aria2
         - jq
+        - golang
+        - lbzip2
+
+# My privnet is 10.10.10/24 
+# and eth1.  ymmv.  
+# The network is also used later for dhcp subnet config.
+- name: static network config eth1
+  become: yes
+  lineinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-eth1
+    regexp: "^BOOTPROTO="
+    line: "BOOTPROTO=none"
+    state: present
+  notify: restart network
+
+- name: static ip eth1
+  become: yes
+  blockinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-eth1
+    block: |
+        IPADDR=10.10.10.3
+        PREFIX=24
+    marker: "# {mark} ANSIBLE MANAGED"
+  notify: restart network
+

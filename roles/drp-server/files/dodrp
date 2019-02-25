@@ -1,0 +1,27 @@
+#!/bin/bash
+
+buildtgt=centos7
+
+case "$1" in
+    list)
+        drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow + " " + .Stage'
+        ;;
+    listdisc)
+        drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow' |grep discovery$
+        ;;
+    build)
+        drpcli machines workflow $2 $buildtgt
+        ;;
+
+    #buildall
+    #delete
+    #deleteall
+
+
+
+
+    *)
+        echo "Usage: $0 {list|listdisc|build|-buildall|-delete|-deleteall}"
+        exit 1
+
+esac

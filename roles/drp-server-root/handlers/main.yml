@@ -4,3 +4,9 @@
   service:
     name: sshd
     state: restarted
+
+- name: restart network
+  become: yes
+  service:
+    name: network
+    state: restarted

@@ -1,10 +1,4 @@
 ---
-- name: drp directory
-  file:
-    path: ~/drp
-    state: directory
-    mode: 0770
-
 - name: dl directory
   file:
     path: ~/tarballs
@@ -23,7 +17,11 @@
 #  get_url:
 #    dest: ~/drp/install.sh
 #    url: https://get.rebar.digital/stable
-#
+
+# Thus we are getting a specific tarball and building it.
+# If you are changing drp_version, you need to nuke the ~/go dir
+# The right way to do this is to build packages and install them IMHO
+# Not running tools/test.sh ... your package build should though.
 
 - name: get drp tarball
   get_url:
@@ -37,13 +35,130 @@
     dest: ~/drp-install/
     creates: ~/drp-install/provision-{{ drp_version }}
 
+- name: build drp
+  command: tools/build.sh
+  args:
+    chdir: ~/drp-install/provision-{{ drp_version }}
+    creates: ~/go/pkg
 
-# things the installer does
-#  needs to be done after this in a post root
-# initfile="assets/startup/dr-provision.service"
-# initdest="/etc/systemd/system/dr-provision.service"
-# starter="sudo systemctl daemon-reload && sudo systemctl start dr-provision"
-# enabler="sudo systemctl daemon-reload && sudo systemctl enable dr-provision
+- name: install drp isolated
+  command: tools/install.sh --isolated install
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/dr-provision
+
+# This runs as root.  you may want to read the docs and give the
+# binary the ability to bind to sockets and run as drpuser.
+- name: systemd unit file
+  become: yes
+  copy:
+    src: files/systemd.unit
+    dest: /etc/systemd/system/dr-provision.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: disable firewall
+  become: yes
+  systemd:
+    name: firewalld
+    enabled: no
+    state: stopped
+
+- name: start dr-provision
+  become: yes
+  systemd:
+    name: dr-provision
+    daemon_reload: yes
+    enabled: yes
+    state: started
+
+# because it is running as root we need this.
+# These are just the dirs we need to check into with 'creates:'
+# you should use the APIs
+- name: visibility into directories
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/tftpboot
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences
+
+# TODO turn of arm/aarch64 here?
+# the saas-content/default.yaml for real content won't have unneeded arch
+# note you need to restart drp-server if you change the yaml
+# It will also be much faster with local content
+
+- name: dr get sledgehammer
+  command: ./drpcli bootenvs uploadiso sledgehammer
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/tftpboot/sledgehammer
+
+- name: dr get centos7
+  command: ./drpcli bootenvs uploadiso centos-7-install
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/tftpboot/centos-7
+
+- name: create discovery workflow
+  command: |-
+    ./drpcli workflows create '{ "Name": "discovery", "Stages": [ "discover", "sledgehammer-wait" ] } '
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows/discovery.json
+
+- name: create centos7 workflow
+  command: |-
+    ./drpcli workflows create '{ "Name": "centos7", "Stages": [ "centos-7-install", "complete" ] } '
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows/centos7.json
+
+# This might need better 'creates' or some other valid check
+- name: set non-destructive discover as default
+  command: |-
+    ./drpcli prefs set defaultWorkflow discovery unknownBootEnv discovery defaultBootEnv sledgehammer defaultStage discover
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences/defaultBootEnv.json
+
+- name: networks json blob
+  copy:
+    src: files/networks.json
+    dest: ~/networks.json
+    mode: 0644
+
+- name: create subnets
+  shell: |-
+    cat ~/networks.json | ./drpcli subnets create - 
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets/privnet.json
+ 
+
+# Doing this because I'm still playing.  I don't like humans on machines, USE API!!
 #
-#
-#
+- name: drpuser bin dir
+  file:
+    path: ~/bin
+    state: directory
+    mode: 0755
+- name: drpcli symlink
+  file:
+    path: ~/bin/drpcli
+    src: ~/go/src/github.com/digitalrebar/provision/drpcli 
+    state: link
+- name: dodrp helper script
+  copy:
+    src: files/dodrp
+    dest: ~/bin/dodrp
+    mode: 0755
+
+
+

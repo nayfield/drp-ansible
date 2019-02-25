@@ -1,0 +1,10 @@
+{
+  "Name": "privnet",
+  "Subnet": "10.10.10.3/24",
+  "ActiveStart": "10.10.10.100",
+  "ActiveEnd": "10.10.10.254",
+  "ActiveLeaseTime": 60,
+  "Enabled": true,
+  "ReservedLeaseTime": 7200,
+  "Strategy": "MAC"
+}
