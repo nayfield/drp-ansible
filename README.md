@@ -62,6 +62,35 @@ Cue Theoden:  You have no power here
 ### No, seriously ... let me back in!  I need to do my job now that the automation ran!
 start making roles in a new branch, and do step #3 ... 
 
+### what about testing stuff
+1. Make some vms (on your kvm host)
+
+```
+$ for i in $(seq 1 9); do ./testarmy.sh ; done
+```
+
+2. Wait a bit until they boot and register (on your drp server)
+```
+$ sleep 180 && dodrp list
+```
+
+3. Once sledgehammer has captured them, make them install
+```
+$ dodrp buildall
+```
+
+4. There is no step four.  But if you want to clean stuff up:
+On your host:
+```
+$ for i in $(seq 1 10); do sudo virsh destroy bootmonkey${i} ; done
+$ for i in $(seq 1 10); do sudo virsh undefine bootmonkey${i} ; done
+$ for i in $(seq 1 10); do sudo rm -f /storage/bootmonkey${i}.qcow2 ; done
+```
+
+And on your drp server:
+```
+$ dodrp deleteall
+```
 
 
 
