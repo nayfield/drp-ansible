@@ -78,8 +78,8 @@
 ### Everything below this line is a candidate for setting up the node
 ### Using the API, and keeping hoomans out of the box
 
-# because it is running as root we need this.
 # These are just the dirs we need to check into with 'creates:'
+# If you run the server as drpuser you won't need this.
 - name: visibility into directories
   become: yes
   file:
@@ -92,6 +92,7 @@
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/workflows
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/stages
+    - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/profiles
     - ~drpuser/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/preferences
 
 # TODO turn of arm/aarch64 here?
@@ -156,6 +157,23 @@
   args:
     chdir: ~/go/src/github.com/digitalrebar/provision
     creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/subnets/privnet.json
+
+
+
+# This will put a ssh key on every system
+# Use a real ssh pubkey in the JSON.
+# This is 
+- name: ssh pubkey blob
+  copy:
+    src: files/sshkey.json
+    dest: ~/sshkey.json
+    mode: 0644
+- name: add ssh key
+  shell: |-
+    cat ~/sshkey.json | ./drpcli profiles update global -
+  args:
+    chdir: ~/go/src/github.com/digitalrebar/provision
+    creates: ~/go/src/github.com/digitalrebar/provision/drp-data/digitalrebar/profiles/global.json
 
 
 # This might need better 'creates' or some other valid check
