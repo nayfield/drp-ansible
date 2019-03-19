@@ -58,13 +58,6 @@
     owner: root
     group: root
 
-- name: disable firewall
-  become: yes
-  systemd:
-    name: firewalld
-    enabled: no
-    state: stopped
-
 - name: start dr-provision
   become: yes
   systemd:

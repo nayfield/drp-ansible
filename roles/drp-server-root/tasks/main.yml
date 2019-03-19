@@ -59,3 +59,11 @@
     marker: "# {mark} ANSIBLE MANAGED"
   notify: restart network
 
+- name: disable firewall
+  become: yes
+  systemd:
+    name: firewalld
+    enabled: no
+    state: stopped
+
+
