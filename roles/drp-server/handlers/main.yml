@@ -1,0 +1,4 @@
+---
+
+- name: run mysetup
+  command: ~/bin/mysetup.sh

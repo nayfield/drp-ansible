@@ -6,7 +6,7 @@ diff -ru orig/assets/startup/dr-provision.service dr-provision-3.12.0/assets/sta
  
  [Service]
 -ExecStart=/usr/local/bin/dr-provision
-+ExecStart=OURSPOT/drp-bin/dr-provision --base-root=OURSPOT/drp-data --local-content=OURSPOT/drp-local --default-content=""
++ExecStart=OURSPOT/drp-bin/dr-provision --base-root=OURSPOT/drp-data --local-content="directory://OURSPOT/drp-local?codec=yaml" --default-content="file://OURSPOT/default.yaml?codec=yaml"
  LimitNOFILE=1048576
  LimitNPROC=1048576
  LimitCORE=infinity

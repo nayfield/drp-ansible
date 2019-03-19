@@ -1,0 +1,4086 @@
+meta:
+  Description: Digital Rebar Provision Community Content
+  Documentation: Unspecified
+  Name: drp-community-content
+  RequiredFeatures: sane-exit-codes, job-exit-states, fsm-runner, workflows, default-workflow,
+    http-range-header, roles, tenants, sprig, multiarch
+  Source: https://github.com/digitalrebar/provision-content
+  Type: dynamic
+  Version: v1.12.0-0-07692141149597ca0535204c851e4ff964fc91ce
+sections:
+  bootenvs:
+    centos-7-install:
+      Available: false
+      BootParams: ""
+      Description: CentOS-7 installer that points to the latest CentOS 7 release.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Initrds: []
+      Kernel: ""
+      Meta:
+        color: blue
+        feature-flags: change-stage-v2
+        icon: linux
+        title: Digital Rebar Community Content
+      Name: centos-7-install
+      OS:
+        Codename: ""
+        Family: redhat
+        IsoFile: ""
+        IsoSha256: ""
+        IsoUrl: ""
+        Name: centos-7
+        SupportedArchitectures:
+          x86_64:
+            BootParams: ksdevice=bootif ks={{.Machine.Url}}/compute.ks method={{.Env.InstallUrl}}
+              inst.geoloc=0 -- {{if .ParamExists "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+            Initrds:
+            - images/pxeboot/initrd.img
+            IsoFile: CentOS-7-x86_64-Minimal-1810.iso
+            IsoUrl: http://mirror.math.princeton.edu/pub/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+            Kernel: images/pxeboot/vmlinuz
+            Loader: ""
+            Sha256: 38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c
+        Version: ""
+      OnlyUnknown: false
+      OptionalParams:
+      - operating-system-disk
+      - provisioner-default-password-hash
+      - kernel-console
+      - proxy-servers
+      - select-kickseed
+      ReadOnly: false
+      RequiredParams: null
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: default-grub.tmpl
+        Meta: null
+        Name: grub
+        Path: grub/{{.Machine.Address}}.cfg
+      - Contents: ""
+        ID: default-grub.tmpl
+        Meta: null
+        Name: grub-mac
+        Path: grub/{{.Machine.MacAddr "grub"}}.cfg
+      - Contents: ""
+        ID: select-kickseed.tmpl
+        Meta: null
+        Name: compute.ks
+        Path: '{{.Machine.Path}}/compute.ks'
+      Validated: false
+    centos-7.6.1810-install:
+      Available: false
+      BootParams: ""
+      Description: CentOS-7.6.1810 install bootenv
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Initrds: []
+      Kernel: ""
+      Meta:
+        color: blue
+        feature-flags: change-stage-v2
+        icon: linux
+        title: Digital Rebar Community Content
+      Name: centos-7.6.1810-install
+      OS:
+        Codename: ""
+        Family: redhat
+        IsoFile: ""
+        IsoSha256: ""
+        IsoUrl: ""
+        Name: centos-7.6.1810
+        SupportedArchitectures:
+          x86_64:
+            BootParams: ksdevice=bootif ks={{.Machine.Url}}/compute.ks method={{.Env.InstallUrl}}
+              inst.geoloc=0 -- {{if .ParamExists "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+            Initrds:
+            - images/pxeboot/initrd.img
+            IsoFile: CentOS-7-x86_64-Minimal-1810.iso
+            IsoUrl: http://mirror.math.princeton.edu/pub/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+            Kernel: images/pxeboot/vmlinuz
+            Loader: ""
+            Sha256: 38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c
+        Version: ""
+      OnlyUnknown: false
+      OptionalParams:
+      - operating-system-disk
+      - provisioner-default-password-hash
+      - kernel-console
+      - proxy-servers
+      - select-kickseed
+      ReadOnly: false
+      RequiredParams: null
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: default-grub.tmpl
+        Meta: null
+        Name: grub
+        Path: grub/{{.Machine.Address}}.cfg
+      - Contents: ""
+        ID: default-grub.tmpl
+        Meta: null
+        Name: grub-mac
+        Path: grub/{{.Machine.MacAddr "grub"}}.cfg
+      - Contents: ""
+        ID: select-kickseed.tmpl
+        Meta: null
+        Name: compute.ks
+        Path: '{{.Machine.Path}}/compute.ks'
+      Validated: false
+    custom-ipxe:
+      Available: false
+      BootParams: ""
+      Description: Boot system using a custom ipxe config file
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Initrds: []
+      Kernel: ../ipxe.pxe
+      Meta: {}
+      Name: custom-ipxe
+      OS:
+        Codename: ""
+        Family: ""
+        IsoFile: ""
+        IsoSha256: ""
+        IsoUrl: ""
+        Name: ipxe
+        SupportedArchitectures: {}
+        Version: ""
+      OnlyUnknown: false
+      OptionalParams: []
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: |
+          DEFAULT discovery
+          PROMPT 0
+          TIMEOUT 10
+          LABEL discovery
+            KERNEL ipxe.pxe
+        ID: ""
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: |
+          DEFAULT discovery
+          PROMPT 0
+          TIMEOUT 10
+          LABEL discovery
+            KERNEL ipxe.pxe
+        ID: ""
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: |
+          #!ipxe
+          {{.Param "custom-ipxe"}}
+        ID: ""
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: |
+          #!ipxe
+          {{.Param "custom-ipxe"}}
+        ID: ""
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      Validated: false
+    debian-8-install:
+      Available: false
+      BootParams: priority=critical console-tools/archs=at console-setup/charmap=UTF-8
+        console-keymaps-at/keymap=us popularity-contest/participate=false passwd/root-login=false
+        keyboard-configuration/xkb-keymap=us netcfg/get_domain=unassigned-domain console-setup/ask_detect=false
+        debian-installer/locale=en_US.utf8 console-setup/layoutcode=us keyboard-configuration/layoutcode=us
+        netcfg/dhcp_timeout=120 netcfg/choose_interface=auto url={{.Machine.Url}}/seed
+        netcfg/get_hostname={{.Machine.Name}} root=/dev/ram numa=off rw quiet {{if
+        .ParamExists "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+      Description: Debian 8 install BootEnv
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Initrds:
+      - initrd.gz
+      Kernel: linux
+      Meta:
+        color: black
+        feature-flags: change-stage-v2
+        icon: linux
+        title: Digital Rebar Community Content
+      Name: debian-8-install
+      OS:
+        Codename: ""
+        Family: debian
+        IsoFile: debian-8-amd64-mini.iso
+        IsoSha256: 61a852072514c385d3a22005bafeb083a2da40efa816a115c4acfa682d112b2b
+        IsoUrl: http://mirrors.kernel.org/debian/dists/jessie/main/installer-amd64/current/images/netboot/mini.iso
+        Name: debian-8
+        SupportedArchitectures: {}
+        Version: "8.11"
+      OnlyUnknown: false
+      OptionalParams:
+      - part-scheme
+      - operating-system-disk
+      - provisioner-default-user
+      - provisioner-default-fullname
+      - provisioner-default-uid
+      - provisioner-default-password-hash
+      - kernel-console
+      - proxy-servers
+      - dns-domain
+      - local-repo
+      - proxy-servers
+      - ntp-servers
+      - select-kickseed
+      ReadOnly: false
+      RequiredParams: null
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: select-kickseed.tmpl
+        Meta: null
+        Name: seed
+        Path: '{{.Machine.Path}}/seed'
+      - Contents: ""
+        ID: net-post-install.sh.tmpl
+        Meta: null
+        Name: net-post-install.sh
+        Path: '{{.Machine.Path}}/post-install.sh'
+      Validated: false
+    debian-9-install:
+      Available: false
+      BootParams: priority=critical console-tools/archs=at console-setup/charmap=UTF-8
+        console-keymaps-at/keymap=us popularity-contest/participate=false passwd/root-login=false
+        keyboard-configuration/xkb-keymap=us netcfg/get_domain=unassigned-domain console-setup/ask_detect=false
+        debian-installer/locale=en_US.utf8 console-setup/layoutcode=us keyboard-configuration/layoutcode=us
+        netcfg/dhcp_timeout=120 netcfg/choose_interface=auto url={{.Machine.Url}}/seed
+        netcfg/get_hostname={{.Machine.Name}} root=/dev/ram rw quiet {{if .ParamExists
+        "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+      Description: Debian 9 install BootEnv
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Initrds:
+      - initrd.gz
+      Kernel: linux
+      Meta:
+        color: black
+        feature-flags: change-stage-v2
+        icon: linux
+        title: Digital Rebar Community Content
+      Name: debian-9-install
+      OS:
+        Codename: ""
+        Family: debian
+        IsoFile: debian-9-amd64-mini.iso
+        IsoSha256: 53fbdc4469216d7cf80023d58925d37add5a81817b43b7a36cd53dd7f606816d
+        IsoUrl: http://mirrors.kernel.org/debian/dists/stretch/main/installer-amd64/current/images/netboot/mini.iso
+        Name: debian-9
+        SupportedArchitectures: {}
+        Version: "9.6"
+      OnlyUnknown: false
+      OptionalParams:
+      - part-scheme
+      - operating-system-disk
+      - provisioner-default-user
+      - provisioner-default-fullname
+      - provisioner-default-uid
+      - provisioner-default-password-hash
+      - kernel-console
+      - proxy-servers
+      - dns-domain
+      - local-repo
+      - proxy-servers
+      - ntp-servers
+      - select-kickseed
+      ReadOnly: false
+      RequiredParams: null
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: select-kickseed.tmpl
+        Meta: null
+        Name: seed
+        Path: '{{.Machine.Path}}/seed'
+      - Contents: ""
+        ID: net-post-install.sh.tmpl
+        Meta: null
+        Name: net-post-install.sh
+        Path: '{{.Machine.Path}}/post-install.sh'
+      Validated: false
+    discovery:
+      Available: false
+      BootParams: ""
+      Description: The boot environment to use to have unknown machines boot to default
+        Stage/BootEnv
+      Documentation: |
+        Normal option of this bootenv is to provision physical services using sledgehammer.
+
+        To join EXISTING machines or CLOUD machines into DRP, you can use run `join-up.sh`.
+        Add the following line to the machines initialization script:
+          ::
+
+            #!/bin/bash
+            curl -fsSL [internal ip]:8091/machines/join-up.sh | sudo bash --
+      Endpoint: ""
+      Errors: []
+      Initrds: []
+      Kernel: ""
+      Meta:
+        color: blue
+        feature-flags: change-stage-v2
+        icon: binoculars
+        title: Digital Rebar Community Content
+      Name: discovery
+      OS:
+        Codename: ""
+        Family: redhat
+        IsoFile: ""
+        IsoSha256: ""
+        IsoUrl: ""
+        Name: sledgehammer
+        SupportedArchitectures:
+          amd64:
+            BootParams: rootflags=loop root=live:/sledgehammer.iso rootfstype=auto
+              ro liveimg rd_NO_LUKS rd_NO_MD rd_NO_DM provisioner.web={{.ProvisionerURL}}
+              -- {{if .ParamExists "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+            Initrds:
+            - fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0/stage1.img
+            IsoFile: sledgehammer-fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0.amd64.tar
+            IsoUrl: http://rackn-sledgehammer.s3-website-us-west-2.amazonaws.com/sledgehammer/fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0/sledgehammer-fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0.amd64.tar
+            Kernel: fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0/vmlinuz0
+            Loader: ""
+            Sha256: ""
+          arm64:
+            BootParams: rootflags=loop root=live:/sledgehammer.iso rootfstype=auto
+              ro liveimg rd_NO_LUKS rd_NO_MD rd_NO_DM provisioner.web={{.ProvisionerURL}}
+              -- {{if .ParamExists "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+            Initrds:
+            - 9b5276ac5826520829aa73c149fe672fe2363656/stage1.img
+            IsoFile: sledgehammer-9b5276ac5826520829aa73c149fe672fe2363656.arm64.tar
+            IsoUrl: https://s3.us-east-2.amazonaws.com/vl-hammer/sledgehammer-9b5276ac5826520829aa73c149fe672fe2363656.arm64.tar
+            Kernel: 9b5276ac5826520829aa73c149fe672fe2363656/vmlinuz0
+            Loader: grubarm64.efi
+            Sha256: ""
+        Version: ""
+      OnlyUnknown: true
+      OptionalParams:
+      - kernel-console
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: |
+          DEFAULT discovery
+          PROMPT 0
+          TIMEOUT 10
+          LABEL discovery
+            KERNEL {{.Env.PathFor "tftp" .Env.Kernel}}
+            INITRD {{.Env.JoinInitrds "tftp"}}
+            APPEND {{.BootParams}}
+            IPAPPEND 2
+        ID: ""
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/default
+      - Contents: |
+          #!ipxe
+          chain {{.ProvisionerURL}}/${netX/mac}.ipxe && exit || goto chainip
+          :chainip
+          chain {{.ProvisionerURL}}/${netX/ip}.ipxe && exit || goto sledgehammer
+          :sledgehammer
+          chain {{.ProvisionerURL}}/${builtin/buildarch}.ipxe
+        ID: ""
+        Meta: null
+        Name: ipxe
+        Path: default.ipxe
+      - Contents: |
+          #!ipxe
+          kernel {{.Env.PathForArch "http" (.Env.KernelFor "amd64") "amd64"}} {{.BootParamsFor "amd64"}} BOOTIF=01-${netX/mac:hexhyp}
+          {{range $initrd := .Env.InitrdsFor "amd64"}}
+          initrd {{$.Env.PathForArch "http" $initrd "amd64"}}
+          {{end}}
+          boot
+        ID: ""
+        Meta: null
+        Name: ipxe-i386
+        Path: i386.ipxe
+      - Contents: |
+          #!ipxe
+          kernel {{.Env.PathForArch "http" (.Env.KernelFor "amd64") "amd64"}} {{.BootParamsFor "amd64"}} BOOTIF=01-${netX/mac:hexhyp}
+          {{range $initrd := .Env.InitrdsFor "amd64"}}
+          initrd {{$.Env.PathForArch "http" $initrd "amd64"}}
+          {{end}}
+          boot
+        ID: ""
+        Meta: null
+        Name: ipxe-x86_64
+        Path: x86_64.ipxe
+      - Contents: |
+          #!ipxe
+          kernel {{.Env.PathForArch "http" (.Env.KernelFor "arm64") "arm64"}} {{.BootParamsFor "arm64"}} BOOTIF=01-${netX/mac:hexhyp}
+          {{range $initrd := (.Env.InitrdsFor "arm64")}}
+          initrd {{$.Env.PathForArch "http" $initrd "arm64"}}
+          {{end}}
+          boot
+        ID: ""
+        Meta: null
+        Name: ipxe-arm64
+        Path: arm64.ipxe
+      - Contents: |
+          if test -s (tftp)/grub/${net_default_mac}.cfg; then
+            echo "Booting via MAC"
+            source (tftp)/grub/${net_default_mac}.cfg
+          elif test -s (tftp)/grub/${net_default_ip}.cfg; then
+            echo "Booting via IP"
+            source (tftp)/grub/${net_default_ip}.cfg
+          else
+            echo "Booting discovery for ${grub_cpu}"
+            source (tftp)/grub/${grub_cpu}.cfg
+          fi
+          boot
+        ID: ""
+        Meta: null
+        Name: grub
+        Path: grub/grub.cfg
+      - Contents: |
+          menuentry "Discovery i386" {
+            linux (tftp)/{{.Env.PathForArch "tftp" (.Env.KernelFor "amd64") "amd64"}} {{.BootParamsFor "amd64"}} BOOTIF=01-${net_default_mac}
+            {{range $initrd := .Env.InitrdsFor "amd64"}}
+            initrd (tftp)/{{$.Env.PathForArch "tftp" $initrd "amd64"}}
+            {{end}}
+          }
+        ID: ""
+        Meta: null
+        Name: grub-i386
+        Path: grub/i386.cfg
+      - Contents: |
+          menuentry "Discovery x86_64" {
+            linux (tftp)/{{.Env.PathForArch "tftp" (.Env.KernelFor "amd64") "amd64"}} {{.BootParamsFor "amd64"}} BOOTIF=01-${net_default_mac}
+            {{range $initrd := .Env.InitrdsFor "amd64"}}
+            initrd (tftp)/{{$.Env.PathForArch "tftp" $initrd "amd64"}}
+            {{end}}
+          }
+        ID: ""
+        Meta: null
+        Name: grub-x86_64
+        Path: grub/x86_64.cfg
+      - Contents: |
+          menuentry "Discovery arm64" {
+            linux (tftp)/{{.Env.PathForArch "tftp" (.Env.KernelFor "arm64") "arm64"}} {{.BootParamsFor "arm64"}} BOOTIF=01-${net_default_mac}
+            {{range $initrd := .Env.InitrdsFor "arm64"}}
+            initrd (tftp)/{{$.Env.PathForArch "tftp" $initrd "arm64"}}
+            {{end}}
+          }
+        ID: ""
+        Meta: null
+        Name: grub-arm64
+        Path: grub/arm64.cfg
+      - Contents: |
+          #!/bin/bash
+          # Register Cloud Machines into Digital Rebar
+          # Copyright 2018, RackN
+          #
+          # Licensed under the Apache License, Version 2.0 (the "License");
+          # you may not use this file except in compliance with the License.
+          # You may obtain a copy of the License at
+          #
+          #  http://www.apache.org/licenses/LICENSE-2.0
+          #
+          # Unless required by applicable law or agreed to in writing, software
+          # distributed under the License is distributed on an "AS IS" BASIS,
+          # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+          # See the License for the specific language governing permissions and
+          # limitations under the License.
+          #
+          # To use this script start your machine with:
+          #   #!/bin/bash
+          #   curl -fsSL [internal ip]:8091/machines/join-up.sh | sudo bash --
+          #
+          # This comment allows this script to function as a Cumulus ZTP script.
+          # CUMULUS-AUTOPROVISIONING
+
+          export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+          # to be generic, we do NOT assume access to cloud provider APIs to determine things
+          get_macs() {
+              local maclist=""
+              local nic=""
+              for nic in /sys/class/net/*; do
+                  [[ -f $nic/type && -f $nic/address && $(cat "$nic/type") == 1 ]] || continue
+                  maclist="$maclist,\"$(cat "$nic/address")\""
+              done
+              printf '[%s]' "${maclist#,}"
+          }
+
+          PROVISIONER_WEB="{{.ProvisionerURL}}"
+          ARCH="$(uname -m)"
+          case $ARCH in
+              amd64|x86_64) ARCH=amd64;;
+              arm64|aarch64) ARCH=arm64;;
+              *)
+                  echo "Unknown arch $ARCH"
+                  exit 1;;
+          esac
+          # Perform minimal required bootstrapping for discovery
+          export RS_TOKEN="{{.GenerateToken}}"
+          export RS_ENDPOINT="{{.ApiURL}}"
+          mkdir -p /usr/local/bin
+          grep -q '/usr/local/bin' <<< "$PATH" || export PATH="$PATH:/usr/local/bin"
+          for tool in drpcli jq; do
+              which "$tool" &>/dev/null && continue
+              echo "Installing $tool in /usr/local/bin"
+              case $tool in
+                  drpcli) curl -gsfLo "/usr/local/bin/$tool" "{{.ProvisionerURL}}/files/drpcli.$ARCH.linux";;
+                  jq)     curl -gsfLo "/usr/local/bin/$tool" "{{.ProvisionerURL}}/files/jq";;
+              esac
+              chmod 755 "/usr/local/bin/$tool"
+          done
+          unset tool
+
+          set -x
+
+          # Check just in case we pxe booted.
+          host_re='rs\.uuid=([^ ]+)'
+          if [[ $(cat /proc/cmdline) =~ $host_re ]]; then
+            RS_UUID="${BASH_REMATCH[1]}"
+          fi
+
+          # Check Hostname to find us
+          if [[ $RS_UUID == null || $RS_UUID == "" ]]; then
+            RS_UUID=$(drpcli machines list Name=$HOSTNAME | jq -r .[0].Uuid)
+            if [[ $RS_UUID == null || $RS_UUID == "" ]]; then
+              RS_UUID=$(drpcli machines show Name:$HOSTNAME | jq -r .Uuid)
+            fi
+          fi
+
+          # If no uuid, check to see if we have one stored from before
+          if [[ $RS_UUID == null || $RS_UUID == "" ]]; then
+            # See if we have already been created based on dropping uuid file
+            if [[ -f /etc/rs-uuid ]]; then
+                luuid="$(tail -n 1 /etc/rs-uuid)"
+                RS_UUID=$(drpcli machines list Uuid=$luuid | jq -r .[0].Uuid)
+                if [[ $RS_UUID == null || $RS_UUID == "" ]]; then
+                  RS_UUID=$(drpcli machines show $luuid | jq -r .Uuid)
+                fi
+            fi
+          fi
+
+          # If we still don't have RS_UUID - check the IP address.
+          IP=""
+          BOOTDEV="eth0"
+          bootdev_ip4_re='inet ([0-9.]+)/([0-9]+)'
+          bootdev_ip6_re='inet6 ([0-9a-fA-F:.]+)/([0-9]+) scope global'
+          if [[ $(ip -4 -o addr show dev $BOOTDEV) =~ $bootdev_ip4_re ]]; then
+              IP="${BASH_REMATCH[1]}"
+          else
+              if [[ $(ip -6 -o addr show dev $BOOTDEV) =~ $bootdev_ip6_re ]]; then
+                  IP="${BASH_REMATCH[1]}"
+              fi
+          fi
+          if [[ $RS_UUID == null || $RS_UUID == "" ]]; then
+            RS_UUID=$(drpcli machines list Address=$IP | jq -r .[0].Uuid)
+          fi
+
+          # If we still don't have a UUID, then create a machine
+          if [[ $RS_UUID == null || $RS_UUID == "" ]]; then
+            echo "Machine UUID file not found.  Adding $HOSTNAME..."
+
+            # Create a new node for us,
+            while ! JSON="$(drpcli machines create "{\"Name\": \"$HOSTNAME\",
+                                                 \"Address\": \"$IP\",
+                                                 \"Arch\": \"$ARCH\",
+                                                 \"Meta\": {\"icon\":\"cloud\"},
+                                                 \"HardwareAddrs\": $(get_macs)}")"; do
+                echo "We could not create a node for ourself, trying again."
+                sleep 5
+            done
+            RS_UUID="$(jq -r '.Uuid' <<< "$JSON")"
+            echo "${RS_UUID}" > /etc/rs-uuid
+            echo "Machine $HOSTNAME added with UUID $RS_UUID"
+          else
+            echo "Machine $HOSTNAME found in DRPCLI! Using $RS_UUID"
+            echo "${RS_UUID}" > /etc/rs-uuid
+          fi
+
+          {{template "profile.tmpl" .}}
+
+          echo "$PROVISIONER_WEB/machines/$RS_UUID/control.sh"
+          if ! curl -g -s -f -L -o /tmp/control.sh "$PROVISIONER_WEB/machines/$RS_UUID/control.sh" && \
+              grep -q '^exit 0$' /tmp/control.sh && \
+              head -1 /tmp/control.sh | grep -q '^#!/bin/bash'; then
+              echo "Could not load our control.sh!"
+              exit 1
+          fi
+          chmod 755 /tmp/control.sh
+
+          export RS_UUID BOOTDEV PROVISIONER_WEB MAC DOMAIN DNS_SERVERS HOSTNAME MYIP
+
+          echo "transfer from start-up to control script"
+
+          [[ -x /tmp/control.sh ]] && exec /tmp/control.sh
+
+          echo "Did not get control.sh from $PROVISIONER_WEB/machines/$RS_UUID/control.sh"
+          exit 1
+        ID: ""
+        Meta: null
+        Name: join-up.sh
+        Path: machines/join-up.sh
+      - Contents: |
+          #!/bin/bash
+          export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+          get_macs() {
+              local maclist=""
+              local nic=""
+              for nic in /sys/class/net/*; do
+                  [[ -f $nic/type && -f $nic/address && $(cat "$nic/type") == 1 ]] || continue
+                  maclist="$maclist,\"$(cat "$nic/address")\""
+              done
+              printf '[%s]' "${maclist#,}"
+          }
+
+          if [[ ! -f /etc/systemd/network/20-bootif.network ]]; then
+              get_param() {
+                  [[ $(cat /proc/cmdline) =~ $1 ]] && echo "${BASH_REMATCH[1]}"
+              }
+
+              dhcp_param() {
+                  [[ $(cat /var/lib/dhclient/dhclient.leases) =~ $1 ]] && echo "${BASH_REMATCH[1]}"
+              }
+
+
+          # Since we are not using normal networking, make sure that
+          # dhclient will stick around forever even if we exit
+              cat >"/etc/systemd/system/dhclient-$BOOTDEV.service" << EOF
+          [Unit]
+          Description=dhclient for $BOOTDEV.service
+          After=network-online.target
+          Wants=network-online.target
+
+          [Service]
+          Type=simple
+          ExecStart=/sbin/dhclient --no-pid -d $BOOTDEV
+
+          [Install]
+          WantedBy=multi-user.target
+          EOF
+
+              systemctl daemon-reload
+              dhclient -x
+              systemctl start "dhclient-$BOOTDEV"
+              sleep 5
+
+              # Stuff from sledgehammer file that makes this command debuggable
+              # Some useful boot parameter matches
+              ip_re='([0-9a-f.:]+/[0-9]+)'
+              host_re='rs\.uuid=([^ ]+)'
+              hostname_re='option host-name "([^"]+)'
+              fixed_ip='fixed-address ([0-9a-f.:]+)'
+              uuid_re='^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$'
+              netname_re='"network":"([^ ]+)"'
+
+              # Assume nothing about the hostname.
+              unset HOSTNAME
+
+              # Check for DHCP set host name.  Expand it to a FQDN if needed.
+              if dhcp_hostname="$(dhcp_param "$hostname_re")"; then
+                  echo "Hostname set by DHCP to $dhcp_hostname"
+                  if [[ ${dhcp_hostname%%.*} == $dhcp_hostname ]]; then
+                      HOSTNAME="${dhcp_hostname}.${DOMAIN}"
+                  else
+                      HOSTNAME="$dhcp_hostname"
+                  fi
+              else
+                  dhcp_ip="$(dhcp_param "$fixed_ip")"
+                  if [[ $dhcp_ip != "" ]]  ; then
+                      lookup_1=$(getent hosts $dhcp_ip | awk '{print $2}')
+                      lookup_2=$(getent hosts $dhcp_ip | awk '{print $2}')
+                      if [[ $lookup_1 && $lookup_1 == $lookup_2 && $lookup_1 != localhost* ]]; then
+                          HOSTNAME=$lookup_1
+                      fi
+                  fi
+              fi
+          fi
+          ARCH="$(uname -m)"
+          case $ARCH in
+              amd64|x86_64) ARCH=amd64;;
+              arm64|aarch64) ARCH=arm64;;
+              *)
+                  echo "Unknown arch $ARCH"
+                  exit 1;;
+          esac
+          # Perform minimal required bootstrapping for discovery
+          export RS_TOKEN="{{.GenerateToken}}"
+          export RS_ENDPOINT="{{.ApiURL}}"
+          mkdir -p /usr/local/bin
+          grep -q '/usr/local/bin' <<< "$PATH" || export PATH="$PATH:/usr/local/bin"
+          for tool in drpcli jq; do
+              which "$tool" &>/dev/null && continue
+              echo "Installing $tool in /usr/local/bin"
+              case $tool in
+                  drpcli) curl -gsfLo "/usr/local/bin/$tool" "{{.ProvisionerURL}}/files/drpcli.$ARCH.linux";;
+                  jq)     curl -gsfLo "/usr/local/bin/$tool" "{{.ProvisionerURL}}/files/jq";;
+              esac
+              chmod 755 "/usr/local/bin/$tool"
+          done
+          unset tool
+
+          # See if we have already been created.
+          if [[ $(cat /proc/cmdline) =~ $host_re ]]; then
+              RS_UUID="${BASH_REMATCH[1]}"
+              json="$(drpcli machines show "$RS_UUID")"
+              # If we did not get a hostname from DHCP, get it from DigitalRebar Provision.
+              if [[ ! $HOSTNAME ]]; then
+                  HOSTNAME="$(jq -r '.Name' <<< "$json")"
+              fi
+          else
+              # If we did not get a hostname from DHCP, generate one for ourselves.
+              [[ $HOSTNAME ]] || HOSTNAME="d${MAC//:/-}.${DOMAIN}"
+              IP=""
+              bootdev_ip4_re='inet ([0-9.]+)/([0-9]+)'
+              bootdev_ip6_re='inet6 ([0-9a-fA-F:.]+)/([0-9]+) scope global'
+              if [[ $(ip -4 -o addr show dev $BOOTDEV) =~ $bootdev_ip4_re ]]; then
+                  IP="${BASH_REMATCH[1]}"
+              else
+                  if [[ $(ip -6 -o addr show dev $BOOTDEV | grep "scope global" | head -1) =~ $bootdev_ip6_re ]]; then
+                      IP="${BASH_REMATCH[1]}"
+                  fi
+              fi
+
+              # Create a new node for us,
+              while ! json="$(drpcli machines create "{\"Name\": \"$HOSTNAME\",
+                                                   \"Address\": \"$IP\",
+                                                   \"Arch\": \"$ARCH\",
+                                                   \"HardwareAddrs\": $(get_macs)}")"; do
+                  echo "We could not create a node for ourself, trying again."
+                  sleep 5
+              done
+              RS_UUID="$(jq -r '.Uuid' <<< "$json")"
+
+          fi
+          echo "${RS_UUID}" > /etc/rs-uuid
+          # Set our hostname for everything else.
+          if [ -f /etc/sysconfig/network ] ; then
+              sed -i -e "s/HOSTNAME=.*/HOSTNAME=${HOSTNAME}/" /etc/sysconfig/network
+          fi
+          echo "${HOSTNAME#*.}" >/etc/domainname
+          hostname "$HOSTNAME"
+
+          {{template "profile.tmpl" .}}
+
+          # Force reliance on DNS
+          echo '127.0.0.1 localhost' >/etc/hosts
+
+          if ! curl -g -s -f -L -o /tmp/control.sh "$PROVISIONER_WEB/machines/$RS_UUID/control.sh" && \
+              grep -q '^exit 0$' /tmp/control.sh && \
+              head -1 /tmp/control.sh | grep -q '^#!/bin/bash'; then
+              echo "Could not load our control.sh!"
+              exit 1
+          fi
+          chmod 755 /tmp/control.sh
+
+          export RS_UUID BOOTDEV PROVISIONER_WEB MAC DOMAIN DNS_SERVERS HOSTNAME
+
+          echo "transfer from start-up to control script"
+
+          [[ -x /tmp/control.sh ]] && exec /tmp/control.sh
+
+          echo "Did not get control.sh from $PROVISIONER_WEB/machines/$RS_UUID/control.sh"
+          exit 1
+        ID: ""
+        Meta: null
+        Name: start-up.sh
+        Path: machines/start-up.sh
+      Validated: false
+    sledgehammer:
+      Available: false
+      BootParams: ""
+      Description: Ram-Only image loaded with tools to allow for discovery and maintenance
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Initrds: []
+      Kernel: ""
+      Meta:
+        color: green
+        feature-flags: change-stage-v2
+        icon: microchip
+        title: Digital Rebar Community Content
+      Name: sledgehammer
+      OS:
+        Codename: ""
+        Family: redhat
+        IsoFile: ""
+        IsoSha256: ""
+        IsoUrl: ""
+        Name: sledgehammer
+        SupportedArchitectures:
+          amd64:
+            BootParams: rootflags=loop root=live:/sledgehammer.iso rootfstype=auto
+              ro liveimg rd_NO_LUKS rd_NO_MD rd_NO_DM provisioner.web={{.ProvisionerURL}}
+              rs.uuid={{.Machine.UUID}} -- {{if .ParamExists "kernel-console"}}{{.Param
+              "kernel-console"}}{{end}}
+            Initrds:
+            - fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0/stage1.img
+            IsoFile: sledgehammer-fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0.amd64.tar
+            IsoUrl: http://rackn-sledgehammer.s3-website-us-west-2.amazonaws.com/sledgehammer/fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0/sledgehammer-fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0.amd64.tar
+            Kernel: fb0acd4a69aaf525ad6c0c99c3f8630fef2fddc0/vmlinuz0
+            Loader: ""
+            Sha256: ""
+          arm64:
+            BootParams: rootflags=loop root=live:/sledgehammer.iso rootfstype=auto
+              ro liveimg rd_NO_LUKS rd_NO_MD rd_NO_DM provisioner.web={{.ProvisionerURL}}
+              rs.uuid={{.Machine.UUID}} -- {{if .ParamExists "kernel-console"}}{{.Param
+              "kernel-console"}}{{end}}
+            Initrds:
+            - 9b5276ac5826520829aa73c149fe672fe2363656/stage1.img
+            IsoFile: sledgehammer-9b5276ac5826520829aa73c149fe672fe2363656.arm64.tar
+            IsoUrl: https://s3.us-east-2.amazonaws.com/vl-hammer/sledgehammer-9b5276ac5826520829aa73c149fe672fe2363656.arm64.tar
+            Kernel: 9b5276ac5826520829aa73c149fe672fe2363656/vmlinuz0
+            Loader: grubarm64.efi
+            Sha256: ""
+        Version: ""
+      OnlyUnknown: false
+      OptionalParams:
+      - kernel-console
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: default-grub.tmpl
+        Meta: null
+        Name: grub
+        Path: grub/{{.Machine.Address}}.cfg
+      - Contents: ""
+        ID: default-grub.tmpl
+        Meta: null
+        Name: grub-mac
+        Path: grub/{{.Machine.MacAddr "grub"}}.cfg
+      - Contents: |
+          #!/bin/bash
+          # Copyright 2017, RackN
+          #
+          # Licensed under the Apache License, Version 2.0 (the "License");
+          # you may not use this file except in compliance with the License.
+          # You may obtain a copy of the License at
+          #
+          #  http://www.apache.org/licenses/LICENSE-2.0
+          #
+          # Unless required by applicable law or agreed to in writing, software
+          # distributed under the License is distributed on an "AS IS" BASIS,
+          # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+          # See the License for the specific language governing permissions and
+          # limitations under the License.
+          #
+
+          # We get the following variables from start-up.sh
+          # MAC BOOTDEV ADMIN_IP DOMAIN HOSTNAME HOSTNAME_MAC MYIP
+
+          set -x
+          shopt -s extglob
+          export PS4="${BASH_SOURCE}@${LINENO}(${FUNCNAME[0]}): "
+          cp /usr/share/zoneinfo/GMT /etc/localtime
+
+          # This will contain a token appropriate for the path being
+          # used below.  Reset the token to the longer machine token.
+          export RS_TOKEN="{{.GenerateInfiniteToken}}"
+
+          # If we do not have hardware addresses set on the machine, set them now.
+          get_macs() {
+              local maclist=""
+              local nic=""
+              for nic in /sys/class/net/*; do
+                  [[ -f $nic/type && -f $nic/address && $(cat "$nic/type") == 1 ]] || continue
+                  maclist="$maclist,\"$(cat "$nic/address")\""
+              done
+              printf '[%s]' "${maclist#,}"
+          }
+          mac_re='BOOTIF=([^ ]+)'
+          if [[ $(cat /proc/cmdline) =~ $mac_re ]]; then
+              drpcli machines set "$RS_UUID" param last-boot-macaddr to "\"${BASH_REMATCH[1]}\""
+          fi
+          json="$(drpcli machines show "$RS_UUID")"
+          # The machine does not have hardware addresses set, so set them
+          if [[ "$(jq '.HardwareAddrs | length' <<< "$json")" = 0 ]]; then
+              drpcli machines update "$RS_UUID" "{\"HardwareAddrs\": $(get_macs)}"
+          fi
+          unset get_macs json
+
+          {{template "reset-workflow.tmpl" .}}
+          {{template "runner.tmpl" .}}
+
+          # The last line in this script must always be exit 0!!
+          exit 0
+        ID: ""
+        Meta: null
+        Name: control.sh
+        Path: '{{.Machine.Path}}/control.sh'
+      Validated: false
+    ubuntu-16.04-install:
+      Available: false
+      BootParams: debian-installer/locale=en_US.utf8 console-setup/layoutcode=us keyboard-configuration/layoutcode=us
+        netcfg/dhcp_timeout=120 netcfg/choose_interface=auto url={{.Machine.Url}}/seed
+        netcfg/get_hostname={{.Machine.Name}} root=/dev/ram rw quiet {{if .ParamExists
+        "kernel-console"}}{{.Param "kernel-console"}}{{end}} -- {{if .ParamExists
+        "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+      Description: Ubuntu-16.04 install points to the latest release version
+      Documentation: "NOTE: Default Ubuntu ISOs will attempt to check internet repositories,
+        \nthis can cause problems during provisioning if your environment does not
+        have outbound access.\nWorkaround this by defining Options 3 (Gateway) and
+        6 (DNS) for your machines' Subnet.\n"
+      Endpoint: ""
+      Errors: []
+      Initrds:
+      - install/netboot/ubuntu-installer/amd64/initrd.gz
+      Kernel: install/netboot/ubuntu-installer/amd64/linux
+      Meta:
+        color: orange
+        feature-flags: change-stage-v2
+        icon: linux
+        title: Digital Rebar Community Content
+      Name: ubuntu-16.04-install
+      OS:
+        Codename: ""
+        Family: ubuntu
+        IsoFile: ubuntu-16.04.5-server-amd64.iso
+        IsoSha256: c94de1cc2e10160f325eb54638a5b5aa38f181d60ee33dae9578d96d932ee5f8
+        IsoUrl: http://mirror.math.princeton.edu/pub/ubuntu-iso/16.04/ubuntu-16.04.5-server-amd64.iso
+        Name: ubuntu-16.04
+        SupportedArchitectures: {}
+        Version: "16.04"
+      OnlyUnknown: false
+      OptionalParams:
+      - part-scheme
+      - operating-system-disk
+      - provisioner-default-user
+      - provisioner-default-fullname
+      - provisioner-default-uid
+      - provisioner-default-password-hash
+      - kernel-console
+      - proxy-servers
+      - dns-domain
+      - local-repo
+      - proxy-servers
+      - ntp-servers
+      - select-kickseed
+      ReadOnly: false
+      RequiredParams: null
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: select-kickseed.tmpl
+        Meta: null
+        Name: seed
+        Path: '{{.Machine.Path}}/seed'
+      - Contents: ""
+        ID: net-post-install.sh.tmpl
+        Meta: null
+        Name: net-post-install.sh
+        Path: '{{.Machine.Path}}/post-install.sh'
+      Validated: false
+    ubuntu-18.04-install:
+      Available: false
+      BootParams: debian-installer/locale=en_US.utf8 console-setup/layoutcode=us keyboard-configuration/layoutcode=us
+        netcfg/dhcp_timeout=120 netcfg/choose_interface=auto url={{.Machine.Url}}/seed
+        netcfg/get_hostname={{.Machine.Name}} root=/dev/ram rw quiet {{if .ParamExists
+        "kernel-console"}}{{.Param "kernel-console"}}{{end}} -- {{if .ParamExists
+        "kernel-console"}}{{.Param "kernel-console"}}{{end}}
+      Description: Ubuntu-18.04 install
+      Documentation: "NOTE: Default Ubuntu ISOs will attempt to check internet repositories,
+        \nthis can cause problems during provisioning if your environment does not
+        have outbound access.\nWorkaround this by defining Options 3 (Gateway) and
+        6 (DNS) for your machines' Subnet.\n"
+      Endpoint: ""
+      Errors: []
+      Initrds:
+      - install/netboot/ubuntu-installer/amd64/initrd.gz
+      Kernel: install/netboot/ubuntu-installer/amd64/linux
+      Meta:
+        color: orange
+        feature-flags: change-stage-v2
+        icon: linux
+        title: Digital Rebar Community Content
+      Name: ubuntu-18.04-install
+      OS:
+        Codename: Bionic Beaver
+        Family: ubuntu
+        IsoFile: ubuntu-18.04.1-server-amd64.iso
+        IsoSha256: a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8
+        IsoUrl: http://cdimage.ubuntu.com/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso
+        Name: ubuntu-18.04
+        SupportedArchitectures: {}
+        Version: "18.04"
+      OnlyUnknown: false
+      OptionalParams:
+      - part-scheme
+      - operating-system-disk
+      - provisioner-default-user
+      - provisioner-default-fullname
+      - provisioner-default-uid
+      - provisioner-default-password-hash
+      - kernel-console
+      - proxy-servers
+      - dns-domain
+      - local-repo
+      - proxy-servers
+      - ntp-servers
+      - select-kickseed
+      ReadOnly: true
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: kexec.tmpl
+        Meta: null
+        Name: kexec
+        Path: '{{.Machine.Path}}/kexec'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux
+        Path: pxelinux.cfg/{{.Machine.HexAddress}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe
+        Path: '{{.Machine.Address}}.ipxe'
+      - Contents: ""
+        ID: default-pxelinux.tmpl
+        Meta: null
+        Name: pxelinux-mac
+        Path: pxelinux.cfg/{{.Machine.MacAddr "pxelinux"}}
+      - Contents: ""
+        ID: default-ipxe.tmpl
+        Meta: null
+        Name: ipxe-mac
+        Path: '{{.Machine.MacAddr "ipxe"}}.ipxe'
+      - Contents: ""
+        ID: select-kickseed.tmpl
+        Meta: null
+        Name: seed
+        Path: '{{.Machine.Path}}/seed'
+      - Contents: ""
+        ID: net-post-install.sh.tmpl
+        Meta: null
+        Name: net-post-install.sh
+        Path: '{{.Machine.Path}}/post-install.sh'
+      Validated: false
+  params:
+    access-keys:
+      Available: false
+      Description: A map of ssh public keys to install for the root user
+      Documentation: |
+        This map is used to put ssh public keys in place for the root user.
+
+        The key of the map is a arbritary name and the value is the ssh
+        public key for that name.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: key
+        title: Digital Rebar Community Content
+      Name: access-keys
+      ReadOnly: false
+      Schema:
+        additionalProperties:
+          type: string
+        type: object
+      Secure: false
+      Validated: false
+    access-ssh-root-mode:
+      Available: false
+      Description: Defines the root login policy
+      Documentation: |
+        This string defines the login policy for the root user.
+
+        Possible values are:
+          without-password - default
+          yes
+          no
+          forced-commands-only
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: unlock
+        title: Digital Rebar Community Content
+      Name: access-ssh-root-mode
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    change-stage/map:
+      Available: false
+      Description: A map of current stage to next stage and reboot choices
+      Documentation: |
+        This map is used to select the next stage based upon the current stage.
+
+        The form is current stage as the key with the value being a string with a
+        colon seperated next stage and return action (success or reboot).
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: shuffle
+        title: Digital Rebar Community Content
+      Name: change-stage/map
+      ReadOnly: false
+      Schema:
+        additionalProperties:
+          type: string
+        type: object
+      Secure: false
+      Validated: false
+    cloud/instance-id:
+      Available: false
+      Description: Cloud Instance ID
+      Documentation: |
+        The ID reference from cloud provider
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: hashtag
+        title: Digital Rebar Community Content
+      Name: cloud/instance-id
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    cloud/instance-type:
+      Available: false
+      Description: Cloud Instance Type
+      Documentation: |
+        The type of resource assigned by the cloud provider
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: shopping bag
+        title: Digital Rebar Community Content
+      Name: cloud/instance-type
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    cloud/placement/availability-zone:
+      Available: false
+      Description: Cloud Availability Zone
+      Documentation: |
+        The location of resource assigned by the cloud provider
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: map
+        title: Digital Rebar Community Content
+      Name: cloud/placement/availability-zone
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    cloud/provider:
+      Available: false
+      Description: Cloud Provider
+      Documentation: |
+        The cloud provider detected by join-up script in discovery
+
+        Known types: aws
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: cloud
+        title: Digital Rebar Community Content
+      Name: cloud/provider
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    cloud/public-hostname:
+      Available: false
+      Description: Cloud Public Hostname
+      Documentation: |
+        Hostname assigned by the Cloud Provider
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: address card
+        title: Digital Rebar Community Content
+      Name: cloud/public-hostname
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    cloud/public-ipv4:
+      Available: false
+      Description: Cloud Public IP Address
+      Documentation: |
+        Address assigned by the Cloud Provider
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: map pin
+        title: Digital Rebar Community Content
+      Name: cloud/public-ipv4
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    custom-ipxe:
+      Available: false
+      Description: Custom iPXE boot script
+      Documentation: |
+        You can use this whenever you need a custom iPXE boot action,
+        such as booting from a remote URL, booting to an iPXE prompt for
+        troubleshooting, or simply playing around with different ipxe
+        tools.  This param defaults to launching an iPXE shell.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: tag
+        title: Digital Rebar Community Content
+      Name: custom-ipxe
+      ReadOnly: false
+      Schema:
+        default: shell
+        type: string
+      Secure: false
+      Validated: false
+    dns-domain:
+      Available: false
+      Description: DNS Domain to append to hostname.
+      Documentation: |
+        This is used currently in the Ubuntu/Debian preseed file to specify the DNS Domain Name of the host.
+
+        This may be in flux.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: tag
+        title: Digital Rebar Community Content
+      Name: dns-domain
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    erase-hard-disk-set:
+      Available: false
+      Description: Defines the set of disks to erase
+      Documentation: |
+        This string defines the set of disks to erase.  Space separated dev names.
+
+        e.g. "/dev/sda /dev/sdb"
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: erase-hard-disk-set
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    extra-packages:
+      Available: false
+      Description: Add extra packages to the initial install path
+      Documentation: |
+        This is an array of strings where each string is an additional package to
+        install during the initial OS install.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: database
+        title: Digital Rebar Community Content
+      Name: extra-packages
+      ReadOnly: false
+      Schema:
+        items:
+          type: string
+        type: array
+      Secure: false
+      Validated: false
+    gohai-inventory:
+      Available: false
+      Description: System inventory as reported by Gohai
+      Documentation: |
+        This provides an untyped dictionary of values from Gohai.
+
+        This is fairly raw data.  Other parameters are distilled from this.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: search
+        readonly: "yes"
+        title: Digital Rebar Community Content
+      Name: gohai-inventory
+      ReadOnly: false
+      Schema: null
+      Secure: false
+      Validated: false
+    gohai/skip:
+      Available: false
+      Description: Skips gohai run during discovery
+      Documentation: |
+        Allows machines to stop using the discover-nogohai stage.
+        When true, the gohai part of the discovery stage will be skipped
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: search minus
+        title: Digital Rebar Community Content
+      Name: gohai/skip
+      ReadOnly: false
+      Schema:
+        default: false
+        type: boolean
+      Secure: false
+      Validated: false
+    kernel-console:
+      Available: false
+      Description: Defines the console string to use for boot environments
+      Documentation: |
+        This string defines the console tty string for the kernel boot string.
+
+        e.g. console=ttyS1,115200
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: desktop
+        title: Digital Rebar Community Content
+      Name: kernel-console
+      ReadOnly: false
+      Schema:
+        default: console=ttyS0,115200 console=tty0
+        type: string
+      Secure: false
+      Validated: false
+    kexec-ok:
+      Available: false
+      Description: Allows the machine agent to kexec instead of rebooting
+      Documentation: |
+        Allows the machine agent to call kexec to switch boot environments
+        as long as the machine is currently running Linux, and the new
+        environment has a template named 'kexec' that contains the
+        kernel, initrds, and command line to use.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: bolt
+        title: Digital Rebar Community Content
+      Name: kexec-ok
+      ReadOnly: false
+      Schema:
+        default: false
+        type: boolean
+      Secure: false
+      Validated: false
+    last-boot-macaddr:
+      Available: false
+      Description: The MAC address the system most recently used to PXE boot
+      Documentation: |
+        Keeps track of the MAC address (in PXELINUX format) that the system
+        most recently PXE booted from.
+      Endpoint: ""
+      Errors: []
+      Meta: {}
+      Name: last-boot-macaddr
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    local-repo:
+      Available: false
+      Description: Indicates that the install should use the local exploded iso as
+        the install repo
+      Documentation: "DEPRECATED: Do not use.\n\nBoolean value that tells the install
+        steps to only use the local exploded iso on the \nDRP server as the only installation
+        repo.\n"
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        deprecated: July 3, 2018
+        icon: database
+        title: Digital Rebar Community Content
+      Name: local-repo
+      ReadOnly: false
+      Schema:
+        type: boolean
+      Secure: false
+      Validated: false
+    local-security-repo:
+      Available: false
+      Description: Specifies the security repo to use for Debian/Ubuntu OSes
+      Documentation: "The string value is either a URL for Ubuntu systems or a host/path
+        string\nfor Debian systems.  This will override the default security repos
+        if \nspecified.\n"
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: database
+        title: Digital Rebar Community Content
+      Name: local-security-repo
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    machine-meta/color:
+      Available: false
+      Description: The color for machines icon
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: info
+        title: RackN Content
+      Name: machine-meta/color
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    machine-meta/icon:
+      Available: false
+      Description: The icon for machines icon
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: info
+        title: RackN Content
+      Name: machine-meta/icon
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    machine-plugin:
+      Available: false
+      Description: The plugin that should manage this machine
+      Documentation: |
+        The plugin that should manage this machine.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: user circle
+        title: Digital Rebar Community Content
+      Name: machine-plugin
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    ntp-servers:
+      Available: false
+      Description: Defines the set of NTP servers to apply to the system.
+      Documentation: |
+        This is an array of strings where each string an IP address or Name of
+        an NTP server.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: time
+        title: Digital Rebar Community Content
+      Name: ntp-servers
+      ReadOnly: false
+      Schema:
+        items:
+          type: string
+        type: array
+      Secure: false
+      Validated: false
+    operating-system-disk:
+      Available: false
+      Description: Defines the disk the installer should use
+      Documentation: |
+        Defines the disk the installer should use for OS installation.  The usage of this
+        parameter inside a template should add a /dev/ if required.  The value should just
+        be the disk simple name.
+
+        e.g. sda
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: operating-system-disk
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    package-repositories:
+      Available: false
+      Description: Repositories to use to install packages from
+      Documentation: |
+        This provides a list of repositories to install packages from.
+        It includes dedicated OS installation repositories and more general ones.
+
+        An example:
+          - tag: "centos-7-install" # Every repository needs a unique tag.
+            # A repository can be used by multiple operating systems.
+            # The usual example of this is the EPEL repository, which
+            # can be used by all of the RHEL variants of a given generation.
+            os:
+              - "centos-7"
+            # We also need to know what system architecture this repo is for.
+            # If this repo is valid for all arches (like a Debian or Ubuntu
+            # mirror), this can be set to "any", although it cannot be
+            # an installSource if that is the case
+            arch: x86_64
+            # If installSource is true, then the URL points directly
+            # to the location we should use for all OS install purposes
+            # save for fetching kernel/initrd pairs from (for now, we will
+            # still assume that they will live on the DRP server).
+            # When installSounrce is true, the os field must contain a single
+            # entry that is an exact match for the bootenv's OS.Name field.
+            installSource: true
+            # For redhat-ish distros when installSource is true,
+            # this URL must contain distro, component, and arch components,
+            # and as such they do not need to be further specified.
+            url: "http://mirrors.kernel.org/centos/7/os/x86_64"
+          - tag: "centos-7-everything"
+            # Since installSource is not true here,
+            # we can define several package sources at once by
+            # providing a distribution and a components section,
+            # and having the URL point at the top-level directory
+            # where everything is housed.
+            # DRP knows how to expand repo definitions for CentOS and
+            # ScientificLinux provided that they follow the standard
+            # mirror directory layout for each distro.
+            os:
+              - centos-7
+            arch: x86_64
+            url: "http://mirrors.kernel.org/centos"
+            distribution: "7"
+            components:
+              - atomic
+              - centosplus
+              - cloud
+              - configmanagement
+              - cr
+              - dotnet
+              - extras
+              - fasttrack
+              - opstools
+              - os
+              - paas
+              - rt
+              - sclo
+              - storage
+              - updates
+          - tag: "debian-9-install"
+            os:
+              - "debian-9"
+            arch: amd64
+            installSource: true
+            # Debian URLs always follow the same rules, no matter
+            # whether the OS install flag is set.  As such,
+            # you must always also specify the distribution and
+            # at least the main component, although you can also
+            # specify other components.
+            url: "http://mirrors.kernel.org/debian"
+            distribution: stretch
+            components:
+              - main
+              - contrib
+              - non-free
+          - tag: "debian-9-backports"
+            os:
+              - "debian-9"
+            arch: any
+            url: "http://mirrors.kernel.org/debian"
+            distribution: stretch-updates
+            components:
+              - main
+              - contrib
+              - non-free
+          - tag: "debian-9-security"
+            os:
+              - "debian-9"
+            arch: any
+            url: "http://security.debian.org/debian-security/"
+            securitySource: true
+            distribution: stretch/updates
+            components:
+              - contrib
+              - main
+              - non-free
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: book
+        title: Digital Rebar Community Content
+      Name: package-repositories
+      ReadOnly: false
+      Schema:
+        default:
+        - arch: x86_64
+          installSource: true
+          os:
+          - centos-7
+          tag: centos-7
+          url: http://mirrors.edge.kernel.org/centos/7/os/x86_64/
+        - arch: aarch64
+          installSource: true
+          os:
+          - centos-7
+          tag: centos-7
+          url: http://mirror.centos.org/altarch/7/os/aarch64/
+        - arch: x86_64
+          installSource: true
+          os:
+          - centos-7.6.1810
+          tag: centos-7.6.1810
+          url: http://mirrors.edge.kernel.org/centos/7.6.1810/os/x86_64/
+        - arch: x86_64
+          components:
+          - atomic
+          - centosplus
+          - cr
+          - dotnet
+          - extras
+          - fasttrack
+          - os
+          - rt
+          - updates
+          distribution: "7"
+          os:
+          - centos-7
+          - centos-7.3.1611
+          - centos-7.4.1708
+          - centos-7.5.1804
+          - centos-7.6.1810
+          tag: centos-7-everything
+          url: http://mirrors.edge.kernel.org/centos
+        - arch: aarch64
+          components:
+          - centosplus
+          - cr
+          - extras
+          - fasttrack
+          - os
+          - updates
+          distribution: "7"
+          os:
+          - centos-7
+          - centos-7.3.1611
+          - centos-7.4.1708
+          - centos-7.5.1804
+          - centos-7.6.1810
+          tag: centos-7-everything
+          url: http://mirror.centos.org/altarch
+        - arch: any
+          distribution: "7"
+          os:
+          - centos-7
+          - centos-7.3.1611
+          - centos-7.4.1708
+          - centos-7.5.1804
+          - centos-7.6.1810
+          tag: epel-7
+          url: http://mirrors.kernel.org/fedora-epel/7/$basearch
+        - arch: amd64
+          bootloc: http://mirrors.edge.kernel.org/ubuntu/dists/xenial/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/
+          components:
+          - main
+          - restricted
+          - multiverse
+          - universe
+          distribution: xenial
+          installSource: true
+          os:
+          - ubuntu-16.04
+          tag: ubuntu-16.04
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: any
+          components:
+          - main
+          - restricted
+          - universe
+          - multiverse
+          distribution: xenial-backports
+          os:
+          - ubuntu-16.04
+          tag: ubuntu-16.04-backports
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: any
+          components:
+          - main
+          - restricted
+          - universe
+          - multiverse
+          distribution: xenial-updates
+          os:
+          - ubuntu-16.04
+          tag: ubuntu-16.04-updates
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: any
+          components:
+          - main
+          - restricted
+          - universe
+          - multiverse
+          distribution: xenial-security
+          os:
+          - ubuntu-16.04
+          securitySource: true
+          tag: ubuntu-16.04-security
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: amd64
+          bootloc: http://mirrors.edge.kernel.org/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/
+          components:
+          - main
+          - restricted
+          - multiverse
+          - universe
+          distribution: bionic
+          installSource: true
+          os:
+          - ubuntu-18.04
+          tag: ubuntu-18.04
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: any
+          components:
+          - main
+          - restricted
+          - universe
+          - multiverse
+          distribution: bionic-backports
+          os:
+          - ubuntu-18.04
+          tag: ubuntu-18.04-backports
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: any
+          components:
+          - main
+          - restricted
+          - universe
+          - multiverse
+          distribution: bionic-updates
+          os:
+          - ubuntu-18.04
+          securitySource: true
+          tag: ubuntu-18.04-updates
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: any
+          components:
+          - main
+          - restricted
+          - universe
+          - multiverse
+          distribution: bionic-security
+          os:
+          - ubuntu-18.04
+          tag: ubuntu-18.04-security
+          url: http://mirrors.edge.kernel.org/ubuntu/
+        - arch: amd64
+          bootloc: http://mirrors.kernel.org/debian/dists/stretch/main/installer-amd64/current/images/netboot/debian-installer/amd64/
+          components:
+          - main
+          - contrib
+          - non-free
+          distribution: stretch
+          installSource: true
+          os:
+          - debian-9
+          tag: debian-9-install
+          url: http://mirrors.kernel.org/debian
+        - arch: any
+          components:
+          - main
+          - contrib
+          - non-free
+          distribution: stretch-updates
+          os:
+          - debian-9
+          tag: debian-9-updates
+          url: http://mirrors.kernel.org/debian
+        - arch: any
+          components:
+          - main
+          - contrib
+          - non-free
+          distribution: stretch-backports
+          os:
+          - debian-9
+          tag: debian-9-backports
+          url: http://mirrors.kernel.org/debian
+        - arch: any
+          components:
+          - contrib
+          - main
+          - non-free
+          distribution: stretch/updates
+          os:
+          - debian-9
+          securitySource: true
+          tag: debian-9-security
+          url: http://security.debian.org/debian-security/
+        - arch: amd64
+          bootloc: http://mirrors.kernel.org/debian/dists/jessie/main/installer-amd64/current/images/netboot/debian-installer/amd64/
+          components:
+          - main
+          - contrib
+          - non-free
+          distribution: jessie
+          installSource: true
+          os:
+          - debian-8
+          tag: debian-8-install
+          url: http://mirrors.kernel.org/debian
+        - arch: any
+          components:
+          - main
+          - contrib
+          - non-free
+          distribution: jessie-updates
+          os:
+          - debian-8
+          tag: debian-8-updates
+          url: http://mirrors.kernel.org/debian
+        - arch: any
+          components:
+          - main
+          - contrib
+          - non-free
+          distribution: jessie-backports
+          os:
+          - debian-8
+          tag: debian-8-backports
+          url: http://mirrors.kernel.org/debian
+        - arch: any
+          components:
+          - contrib
+          - main
+          - non-free
+          distribution: jessie/updates
+          os:
+          - debian-8
+          securitySource: true
+          tag: debian-8-security
+          url: http://security.debian.org/debian-security/
+        - arch: amd64
+          installSource: true
+          os:
+          - sledgehammer/6122f34b46b5b74b668d6779e33f5fcd0f44a8cc
+          tag: sledgehammer/6122f34b46b5b74b668d6779e33f5fcd0f44a8cc
+          url: http://rackn-sledgehammer.s3-website-us-west-2.amazonaws.com/sledgehammer/6122f34b46b5b74b668d6779e33f5fcd0f44a8cc/
+        items:
+          properties:
+            arch:
+              type: string
+            bootloc:
+              type: string
+            components:
+              items:
+                type: string
+              type: array
+            distribution:
+              type: string
+            installSource:
+              type: boolean
+            os:
+              items:
+                type: string
+              type: array
+            packageType:
+              type: string
+            repoType:
+              type: string
+            securitySource:
+              type: boolean
+            tag:
+              type: string
+            url:
+              format: uri
+              type: string
+          required:
+          - tag
+          - os
+          - url
+          - arch
+          type: object
+        type: array
+      Secure: false
+      Validated: false
+    part-scheme:
+      Available: false
+      Description: Defines a string that references a template for partitioning during
+        installation.
+      Documentation: |
+        This string contains the name of a template that holds the Debian installer partitioning
+        commands for use during installation.
+
+        The string will be expanded into this template name:
+
+          part-seed-<string>.tmpl
+
+        e.g. softraid
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: part-scheme
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    provisioner-default-fullname:
+      Available: false
+      Description: Defines full name of the default user
+      Documentation: |
+        Used in the Debian/Ubuntu installers to specify the full name of the default user.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: user
+        title: Digital Rebar Community Content
+      Name: provisioner-default-fullname
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    provisioner-default-password-hash:
+      Available: false
+      Description: Defines the password of the default user in hash form
+      Documentation: "This specifies the password hash to use for the install process.
+        \ This is the \nroot password on CentOS-based installs and the default user
+        on the Debian-based\ninstalls.\n\nTo generate a hash, use the following command:\n\n
+        \ echo 'import crypt,getpass; print crypt.crypt(getpass.getpass(), \"$6$16_CHARACTER_SALT_HERE\")'
+        | python -\n\nSet your 16 character salt in the correct place.  This generate
+        sha512 hash which should work on both\noperating system types.\n"
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: key
+        title: Digital Rebar Community Content
+      Name: provisioner-default-password-hash
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    provisioner-default-uid:
+      Available: false
+      Description: Defines uid to use for the default user
+      Documentation: |
+        Used in the Debian/Ubuntu installers to specify the uid of the default user.
+
+        The value is a string for of the integer value.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: user
+        title: Digital Rebar Community Content
+      Name: provisioner-default-uid
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    provisioner-default-user:
+      Available: false
+      Description: Defines the username of the default user
+      Documentation: |
+        Used in the Debian/Ubuntu installers to specify the username of the default user.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: user
+        title: Digital Rebar Community Content
+      Name: provisioner-default-user
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    proxy-servers:
+      Available: false
+      Description: Defines the set of HTTP proxy servers to apply to the system.
+      Documentation: |
+        This is an array of URLs where each string is an HTTP proxy server to references.
+
+        The URLs can be names or IPs with ports and schemas.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: browser
+        title: Digital Rebar Community Content
+      Name: proxy-servers
+      ReadOnly: false
+      Schema:
+        items:
+          type: string
+        type: array
+      Secure: false
+      Validated: false
+    rs-debug-enable:
+      Available: false
+      Description: Enables bash debugging ('set -x') in the 'setup.tmpl'.
+      Documentation: "Boolean value that enables Bash Script debugging - essentially\nby
+        turning on 'set -x' globally.  Scripts can (and probably do)\nenable/disable
+        this flags in various sections.  In those cases\nwe are not overriding those
+        values. \n\nAdditionally, the shell variable 'RS_DEBUG_ENABLE' is set to 1
+        (on)\nfor Script authors to use.  This allows a construct like\n\n  (( $RS_DEBUG_ENABLE
+        )) && run_debug_function\n"
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: red
+        icon: bug
+        title: Digital Rebar Community Content
+      Name: rs-debug-enable
+      ReadOnly: false
+      Schema:
+        default: false
+        type: boolean
+      Secure: false
+      Validated: false
+    select-kickseed:
+      Available: false
+      Description: Use an alternate Kickstart or Preseed install configuration file.
+      Documentation: |
+        The name of a custom kickstart or preseed template to use.  If not defined, the
+        default for each platform will be used, as follows
+
+          'net-seed.tmpl' for Debian/Ubuntu platforms
+          'centos-7.ks.tmpl' for CentOS 7 platforms
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: select-kickseed
+      ReadOnly: false
+      Schema:
+        type: string
+      Secure: false
+      Validated: false
+    start-over:
+      Available: false
+      Description: Tells sledgehammer to reset the task list on startup.
+      Documentation: |
+        Allows the operator to control if booting into sledgehammer should
+        reset the task list on boot up.  This allows things like
+        bios update scripts to set the start-over flag to false and
+        issue a reboot command and start over either at the
+        current task or the next one.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: repeat
+        title: Digital Rebar Community Content
+      Name: start-over
+      ReadOnly: false
+      Schema:
+        default: true
+        type: boolean
+      Secure: false
+      Validated: false
+    zero-hard-disks-for-os-install:
+      Available: false
+      Description: Whether to zero entire hard disks when erasing before install
+      Documentation: |
+        By default, the erase disks for os install task tries to only erase
+        any metadata on the disks that may confuse a next OS install, along with
+        (optionally) attempting to discard all sectors on devices that support
+        discard.  If this is set to true, the task will also zero all sectors
+        on any non-SSD drives.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: zero-hard-disks-for-os-install
+      ReadOnly: false
+      Schema:
+        default: false
+        type: boolean
+      Secure: false
+      Validated: false
+  profiles:
+    root-access-example:
+      Available: false
+      Description: Example profile for setting the access-keys and access-ssh-root-mode
+        parameters
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: key
+      Name: root-access-example
+      Params:
+        access-keys:
+          greg: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvqrpVfs9MXwjleLNPICcjAMviF3FJq85sMAe/4ejNDLMOcjDIFz4aQxrZx6sPlaqWADdy9XADaKgaYZwNssE9s6GNGJVORXl+vacLslwcrWo7aThzfKSlkn6wul3PcVjvIINQGiH/sUznLT8zUGR0hWX2Pds80iSxaQhIoFC8+DEVPSr5CIlliaCiYmwBB2FjBvR6ryltqxx3PIjJ4RwiP77DV6kdkG2khdY2XB7WLJptlgrg2U20TKG/9LrBqPFcM/m0BEmp01xN60A/O5Iw+vTXQoR3CX0mlNIzQIeAbtqau+uPkzd2TPzNOZebEvOnw1MxJPLjLqvxXRw54Bt9
+            galthaus@Gregs-MacBook-Pro.local
+        access-ssh-root-mode: without-password
+      ReadOnly: false
+      Validated: false
+  stages:
+    aws-discover:
+      Available: false
+      BootEnv: ""
+      Description: Stage to dynamically determine if machine is in AWS and record
+        metadata
+      Documentation: |
+        Collect information about AWS cloud
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: cloud
+        title: RackN Content
+      Name: aws-discover
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - aws-discover
+      Templates: []
+      Validated: false
+    centos-7-install:
+      Available: false
+      BootEnv: centos-7-install
+      Description: CentOS 7 install stages.  References the latest CentOS 7 release
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: download
+        title: Digital Rebar Community Content
+      Name: centos-7-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - set-hostname
+      - centos-drp-only-repos
+      - ssh-access
+      Templates: []
+      Validated: false
+    centos-7.6.1810-install:
+      Available: false
+      BootEnv: centos-7.6.1810-install
+      Description: CentOS 7.6.1810 install stage.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: download
+        title: Digital Rebar Community Content
+      Name: centos-7.6.1810-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - set-hostname
+      - centos-drp-only-repos
+      - ssh-access
+      Templates: []
+      Validated: false
+    complete:
+      Available: false
+      BootEnv: local
+      Description: Stage that represents workflow completion to local disk boot but
+        leaves the runner running.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: green
+        icon: check circle outline
+        title: Digital Rebar Community Content
+      Name: complete
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks: []
+      Templates: []
+      Validated: false
+    complete-nowait:
+      Available: false
+      BootEnv: local
+      Description: Stage that represents workflow completion to local disk.
+      Documentation: |
+        This is deprectated and leaves the runner running, but will exit install bootenvs correctly.
+        The use of this was to exit install workflows.  This will continue to work for that, but
+        should be replaced by finish-install.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: green
+        icon: checkmark
+        title: Digital Rebar Community Content
+      Name: complete-nowait
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: false
+      Tasks: []
+      Templates: []
+      Validated: false
+    debian-8-install:
+      Available: false
+      BootEnv: debian-8-install
+      Description: Debian 8 install stage.  References latest debian 8 install image.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: download
+        title: Digital Rebar Community Content
+      Name: debian-8-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - ubuntu-drp-only-repos
+      - ssh-access
+      Templates: []
+      Validated: false
+    debian-9-install:
+      Available: false
+      BootEnv: debian-9-install
+      Description: Debian 9 install stage.  References the latest Debian 9 image
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: download
+        title: Digital Rebar Community Content
+      Name: debian-9-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - ubuntu-drp-only-repos
+      - ssh-access
+      Templates: []
+      Validated: false
+    discover:
+      Available: false
+      BootEnv: sledgehammer
+      Description: Discovery stage used to inventory and baseline new machines
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: purple
+        icon: spinner
+        title: Digital Rebar Community Content
+      Name: discover
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - gohai
+      - ssh-access
+      Templates: []
+      Validated: false
+    discover-no-gohai:
+      Available: false
+      BootEnv: sledgehammer
+      Description: DEPRECATED - Discovery stage used to discover new machines - no
+        inventory
+      Documentation: |
+        DEPRECATED! Use the discover Stage with gohai/skip Param instead.
+
+        Pre gohai/skip Parameter, used to run discovery without gohai action.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: gray
+        deprecated: 25 June 2018
+        icon: ban
+        title: Digital Rebar Community Content
+      Name: discover-no-gohai
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - ssh-access
+      Templates: []
+      Validated: false
+    erase-hard-disk-set:
+      Available: false
+      BootEnv: sledgehammer
+      Description: |
+        Erases a set of disks.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: erase-hard-disk-set
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - erase-hard-disk-set
+      Templates: []
+      Validated: false
+    finish-install:
+      Available: false
+      BootEnv: local
+      Description: Stage to indicate that all the install tasks are done and the system
+        should complete the OS install
+      Documentation: |
+        Originally, this stage was used with the STOP runner action in the change-stage/map and this will
+        continue to work.
+
+        Going forward, the STOP action is not required.  The changing of bootenv from something-install to
+        local will cause the runner to exit.
+
+        The runner will also continue to run regardless of the RunnerWait flag.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: checkmark
+        title: Digital Rebar Community Content
+      Name: finish-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: false
+      Tasks: []
+      Templates: []
+      Validated: false
+    gce-discover:
+      Available: false
+      BootEnv: ""
+      Description: Stage to dynamically determine if machine is in GCE and record
+        metadata
+      Documentation: |
+        Collect information about Google cloud
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: cloud
+        title: RackN Content
+      Name: gce-discover
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - gce-discover
+      Templates: []
+      Validated: false
+    machine-meta:
+      Available: false
+      BootEnv: ""
+      Description: Stage to assign the machine icon and color
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: info
+      Name: machine-meta
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - machine-meta-setter
+      Templates: []
+      Validated: false
+    prep-install:
+      Available: false
+      BootEnv: sledgehammer
+      Description: |
+        Prepares system for OS install by zeroing out any data on the disks
+        that might confuse the OS install process.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: prep-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - erase-hard-disks-for-os-install
+      Templates: []
+      Validated: false
+    reorder-uefi-bootorder:
+      Available: false
+      BootEnv: ""
+      Description: Reorder the UEFI bootorder during OS install to make the current
+        boot device the first one.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: reorder-uefi-bootorder
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - always-pxe-in-uefi-first
+      Templates: []
+      Validated: false
+    sledgehammer-wait:
+      Available: false
+      BootEnv: sledgehammer
+      Description: Wait for more tasks in sledgehammer - useful for debugging
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: hand paper
+        title: Digital Rebar Community Content
+      Name: sledgehammer-wait
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks: []
+      Templates: []
+      Validated: false
+    ssh-access:
+      Available: false
+      BootEnv: ""
+      Description: Stage that installs SSH keys and configure SSH access policy
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: key
+        title: Digital Rebar Community Content
+      Name: ssh-access
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - ssh-access
+      Templates: []
+      Validated: false
+    ubuntu-16.04-install:
+      Available: false
+      BootEnv: ubuntu-16.04-install
+      Description: Ubuntu 16.04 installation stage.  References latest release
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: download
+        title: Digital Rebar Community Content
+      Name: ubuntu-16.04-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: false
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - ubuntu-drp-only-repos
+      - ssh-access
+      Templates: []
+      Validated: false
+    ubuntu-18.04-install:
+      Available: false
+      BootEnv: ubuntu-18.04-install
+      Description: Ubuntu 18.04 installation stage.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: yellow
+        icon: download
+        title: Digital Rebar Community Content
+      Name: ubuntu-18.04-install
+      OptionalParams: []
+      Profiles: []
+      ReadOnly: true
+      Reboot: false
+      RequiredParams: []
+      RunnerWait: true
+      Tasks:
+      - ubuntu-drp-only-repos
+      - ssh-access
+      Templates: []
+      Validated: false
+  tasks:
+    always-pxe-in-uefi-first:
+      Available: false
+      Description: Make sure that the EFI BootOrder variable has the NIC we installed
+        from first.
+      Documentation: |
+        Certian Linux distributions reorder the UEFI boot options to always
+        locally boot from their install first, which is not generally what
+        dr-provision wants, as it makes regaining control of the machine by
+        PXE booting it to Sledgehammer harder.  This task rewrites the UEFI
+        boot order to have whatever device we booted from be the first.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        icon: disk outline
+        title: Digital Rebar Community Content
+      Name: always-pxe-in-uefi-first
+      OptionalParams: []
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: |
+          #!/bin/bash
+          {{ template "setup.tmpl" .}}
+          set -x
+          umount_things() {
+              if [[ $efiVarsMounted ]]; then
+                  umount /sys/firmware/efi/efivars || :
+              fi
+              if [[ $sysMounted ]]; then
+                  umount /sys || :
+              fi
+          }
+          trap umount_things EXIT
+          if [[ ! -d /sys/firmware ]]; then
+              mount -t sysfs sysfs /sys
+              sysMounted=true
+          fi
+          if [[ ! -d /sys/firmware/efi ]]; then
+              echo "No EFI firmware, nothing to do"
+              exit 0
+          fi
+          if [[ $(echo /sys/firmware/efi/efivars/*) = '/sys/firmware/efi/efivars/*' ]]; then
+              mkdir -p /sys/firmware/efi/efivars
+              mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+              efiVarsMounted=true
+          fi
+          if ! which efibootmgr; then
+              echo "Missing efibootmgr, please install it as part of your OS install"
+              exit 1
+          fi
+          efibootmgr -v || :
+          current="$(efibootmgr |awk '/^BootCurrent/ {print $2}')"
+          order="$(efibootmgr |awk '/^BootOrder/ {print $2}')"
+          if [[ ! $order ]]; then
+              efibootmgr -o "$current"
+          else
+              efibootmgr -o "${current},${order}"
+          fi
+          efibootmgr -D || :
+          efivootmgr -v || :
+        ID: ""
+        Meta: null
+        Name: munge-boot-order-with-efibootmgr
+        Path: ""
+      Validated: false
+    aws-discover:
+      Available: false
+      Description: A task to discover AWS metadata of a node automatically.
+      Documentation: |
+        Collect information about AWS cloud
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: cloud
+        title: RackN Content
+      Name: aws-discover
+      OptionalParams: []
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: "#!/bin/bash\n\n# This will contain a token appropriate for the
+          path being\n# used below.  Either a create or update/show token\nexport
+          RS_UUID=\"{{.Machine.UUID}}\"\nexport RS_TOKEN=\"{{.GenerateToken}}\"\n\n#
+          Ubuntu Path is different than Centos Path - fix it.\nexport PATH=$PATH:/usr/bin:/usr/sbin:/bin:/sbin\n\nINSTANCEID=$(curl
+          -sfL http://169.254.169.254/latest/meta-data/instance-id)\necho \"Looking
+          for AWS Instance ID, found \\\"$INSTANCEID\\\"\"\n\nif [[ $INSTANCEID !=
+          \"\" && $INSTANCEID != \"null\" ]] ; then\n    drpcli machines set $RS_UUID
+          param cloud/provider to \"AWS\" \n    drpcli machines set $RS_UUID param
+          cloud/instance-id to \"$INSTANCEID\" \n\n    for key in public-ipv4 public-hostname
+          instance-type placement/availability-zone; do\n        value=$(curl -sfL
+          http://169.254.169.254/latest/meta-data/${key})\n        echo \"Setting
+          cloud/$key from API to $value\"\n        drpcli machines set $RS_UUID param
+          cloud/$key to \"$value\" \n    done\n    unset key\nelse\n    echo \"Could
+          not find a AWS Instance ID - Skipping\"\nfi\nexit 0\n"
+        ID: ""
+        Meta: null
+        Name: discover-aws-metadata
+        Path: ""
+      Validated: false
+    centos-drp-only-repos:
+      Available: false
+      Description: A task to force the machine to switch to DRP hosted-only centos
+        repos.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: key
+        title: Digital Rebar Community Content
+      Name: centos-drp-only-repos
+      OptionalParams:
+      - local-repo
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: centos-drp-only-repos.sh.tmpl
+        Meta: null
+        Name: Force node to install from drp hosted repos
+        Path: ""
+      Validated: false
+    change-stage:
+      Available: false
+      Description: A task to change stages
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: shuffle
+        title: Digital Rebar Community Content
+      Name: change-stage
+      OptionalParams:
+      - change-stage/map
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: change-stage.sh.tmpl
+        Meta: null
+        Name: Change stage
+        Path: ""
+      Validated: false
+    erase-hard-disk-set:
+      Available: false
+      Description: |
+        Erases any data on the specified hard disk that might confuse the OS install
+        process.  This includes LVM metadata, partition tables, software RAID signatures,
+        and the first and last megabyte of any partitions and disks.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: erase
+        title: Digital Rebar Community Content
+      Name: erase-hard-disk-set
+      OptionalParams:
+      - erase-hard-disk-set
+      ReadOnly: false
+      RequiredParams:
+      - zero-hard-disks-for-os-install
+      Templates:
+      - Contents: |
+          #!/bin/bash
+          . helper
+
+          # Clear functional data - assumes /dev/sda or the like
+          function clear_disk() {
+              local disk
+              disk=$1
+              diskbase=${disk/\/dev\/}
+
+              # Deactivate all known lvm and dm devices first, unmounting filesystems as needed.
+              echo "Deactivating all known volume groups on $disk"
+              blkdeactivate -u -d force,retry -l retry,wholevg $disk || :
+              # Nuke it all.
+              declare vg pv maj min blocks name
+              # Make sure that the kernel knows about all the partitions
+              echo "Probing for all partitions on $disk.  Failures are OK."
+              partprobe "$disk" || :
+
+              # Zap any volume groups that may be lying around.
+              vgscan --ignorelockingfailure -P
+              while read vg; do
+                  echo "Forcibly removing volume group $vg"
+                  vgremove -ff -y "$vg" || :
+              done < <(vgs --noheadings -o vg_name,pv_name | grep $disk | awk '{ print $1 }' | sort -u)
+
+              # Wipe out any LVM metadata that the kernel may have detected.
+              pvscan --ignorelockingfailure
+              while read pv; do
+                  echo "Forcibly removing physical volume $pv"
+                  pvremove -ff -y "$pv" || :
+              done < <(pvs --noheadings -o pv_name | grep $disk)
+
+              # Now zap any partitions along with any RAID metadata that may exist.
+              while read maj min blocks name; do
+                  [[ -b /dev/$name && -w /dev/$name && $name != name ]] || continue
+                  echo "Forcibly removing any RAID metadata on /dev/$name. Failures are OK if readonly"
+                  mdadm --misc --zero-superblock --force /dev/$name || :
+                  if (( blocks >= 4096)); then
+                      echo "Zeroing the first and last 2 megs of /dev/$name. Failures are OK if readonly"
+                      dd "if=/dev/zero" "of=/dev/$name" "bs=512" "count=4096" || :
+                      dd "if=/dev/zero" "of=/dev/$name" "bs=512" "count=4096" "seek=$(($blocks - 4096))" || :
+                  else
+                      echo "Zeroing small device /dev/$name.  Failures are OK if readonly"
+                      dd "if=/dev/zero" "of=/dev/$name" "bs=512" "count=$blocks" || :
+                  fi
+              done < <(tac /proc/partitions | grep $diskbase)
+          }
+
+          # Wipe disk assumes /dev/sda or the like
+          function wipe_disk() {
+              local disk bd dev spinner want_zero skip_zero
+              disk=$1
+              bd=/sys/block/${disk/\/dev\/}
+              dev="/dev/${bd##*/}"
+
+              [[ -b $dev ]] || continue
+              grep -q 'devices/virtual' < <(readlink "$bd") && continue
+              spinner=$(cat "$bd/queue/rotational")
+              want_zero="{{.Param "zero-hard-disks-for-os-install"}}"
+              skip_zero=$(cat "$bd/queue/discard_zeroes_data")
+              if [[ $want_zero = true && $skip_zero != 1 && $spinner = 1 ]]; then
+                  # blkdiscard -z does the same job as dd if=/dev/zero,
+                  # except the kernel does all the work and it uses
+                  # the SCSI command WRITE_SAME if the device supports
+                  # it, which can greatly speed up the zeroing process.
+                  echo "Zeroing $dev"
+                  blkdiscard -z "$dev" || :
+              fi
+              # if discard_max_bytes is zero, then blkdiscard will not work anyways.
+              if [[ $(cat "$bd/queue/discard_max_bytes") != 0 ]]; then
+                  # Try secure erase first, then regular discard.
+                  echo "Attempting to secure discard $dev."
+                  echo "This may fail if the device does not support secure discard."
+                  if blkdiscard -s "$dev"; then
+                      echo "Secure discard of $dev finished"
+                  else
+                      echo "Sercure discard of $dev failed, attempting normal discard"
+                      if blkdiscard "$dev"; then
+                          echo "Normal discard of $dev finished"
+                      else
+                          echo "Normal discard of $dev failed"
+                      fi
+                  fi
+              fi
+          }
+
+          {{if .ParamExists "erase-hard-disk-set" }}
+          disks="{{.Param "erase-hard-disk-set"}}"
+          # fill out disks
+          for bd in $disks; do
+              clear_disk $bd
+          done
+          # For paranoia's sake, try to discard all blocks on the remaining
+          # top-level block devices in parallel.
+          for bd in $disks; do
+            ( wipe_disk $bd ) &
+          done
+          wait
+          partprobe
+          {{else}}
+          echo "No disks to erase. Skipping..."
+          {{end}}
+          exit 0
+        ID: ""
+        Meta: null
+        Name: erase-disk
+        Path: ""
+      Validated: false
+    erase-hard-disks-for-os-install:
+      Available: false
+      Description: |
+        Erases any data on the hard disks that might confuse the OS install
+        process.  This includes LVM metadata, partition tables, software RAID signatures,
+        and the first and last megabyte of any partitions and disks.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: erase
+        title: Digital Rebar Community Content
+      Name: erase-hard-disks-for-os-install
+      OptionalParams: []
+      ReadOnly: false
+      RequiredParams:
+      - zero-hard-disks-for-os-install
+      Templates:
+      - Contents: |
+          #!/bin/bash
+          . helper
+          # Deactivate all known lvm and dm devices first, unmounting filesystems as needed.
+          echo "Deactivating all known volume groups"
+          blkdeactivate -u -d force,retry -l retry,wholevg || :
+          # Nuke it all.
+          declare vg pv maj min blocks name
+          # Make sure that the kernel knows about all the partitions
+          for bd in /sys/block/*; do
+              [[ -b /dev/${bd##*/} ]] || continue
+              grep -q 'devices/virtual' < <(readlink "$bd") && continue
+              echo "Probing for all partitions on dev/${bd##*/}.  Failures are OK."
+              partprobe "/dev/${bd##*/}" || :
+          done
+          # Zap any volume groups that may be lying around.
+          vgscan --ignorelockingfailure -P
+          while read vg; do
+              echo "Forcibly removing volume group $vg"
+              vgremove -ff -y "$vg" || :
+          done < <(vgs --noheadings -o vg_name)
+          # Wipe out any LVM metadata that the kernel may have detected.
+          pvscan --ignorelockingfailure
+          while read pv; do
+              echo "Forcibly removing physical volume $pv"
+              pvremove -ff -y "$pv" || :
+          done < <(pvs --noheadings -o pv_name)
+          # Now zap any partitions along with any RAID metadata that may exist.
+          while read maj min blocks name; do
+              [[ -b /dev/$name && -w /dev/$name && $name != name ]] || continue
+              [[ $name = loop* ]] && continue
+              [[ $name = fd* ]] && continue
+              echo "Forcibly removing any RAID metadata on /dev/$name. Failures are OK if readonly"
+              mdadm --misc --zero-superblock --force /dev/$name || :
+              if (( blocks >= 4096)); then
+                  echo "Zeroing the first and last 2 megs of /dev/$name. Failures are OK if readonly"
+                  dd "if=/dev/zero" "of=/dev/$name" "bs=512" "count=4096" || :
+                  dd "if=/dev/zero" "of=/dev/$name" "bs=512" "count=4096" "seek=$(($blocks - 4096))" || :
+              else
+                  echo "Zeroing small device /dev/$name.  Failures are OK if readonly"
+                  dd "if=/dev/zero" "of=/dev/$name" "bs=512" "count=$blocks" || :
+              fi
+          done < <(tac /proc/partitions)
+          # For paranoia's sake, try to discard all blocks on the remaining
+          # top-level block devices in parallel.
+          for bd in /sys/block/*; do
+            (
+              [[ -b /dev/${bd##*/} ]] || continue
+              grep -q 'devices/virtual' < <(readlink "$bd") && continue
+              dev="/dev/${bd##*/}"
+              spinner=$(cat "$bd/queue/rotational")
+              want_zero="{{.Param "zero-hard-disks-for-os-install"}}"
+              skip_zero=$(cat "$bd/queue/discard_zeroes_data")
+              if [[ $want_zero = true && $skip_zero != 1 && $spinner = 1 ]]; then
+                  # blkdiscard -z does the same job as dd if=/dev/zero,
+                  # except the kernel does all the work and it uses
+                  # the SCSI command WRITE_SAME if the device supports
+                  # it, which can greatly speed up the zeroing process.
+                  echo "Zeroing $dev"
+                  blkdiscard -z "$dev" || :
+              fi
+              # if discard_max_bytes is zero, then blkdiscard will not work anyways.
+              if [[ $(cat "$bd/queue/discard_max_bytes") != 0 ]]; then
+                  # Try secure erase first, then regular discard.
+                  echo "Attempting to secure discard $dev."
+                  echo "This may fail if the device does not support secure discard."
+                  if blkdiscard -s "$dev"; then
+                      echo "Secure discard of $dev finished"
+                  else
+                      echo "Sercure discard of $dev failed, attempting normal discard"
+                      if blkdiscard "$dev"; then
+                          echo "Normal discard of $dev finished"
+                      else
+                          echo "Normal discard of $dev failed"
+                      fi
+                  fi
+              fi
+            ) &
+          done
+          wait
+        ID: ""
+        Meta: null
+        Name: erase-disks
+        Path: ""
+      Validated: false
+    gce-discover:
+      Available: false
+      Description: A task to discover GCE metadata of a node automatically.
+      Documentation: |
+        Collect information about Google cloud
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: cloud
+        title: RackN Content
+      Name: gce-discover
+      OptionalParams: []
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: "#!/bin/bash\n\n# This will contain a token appropriate for the
+          path being\n# used below.  Either a create or update/show token\nexport
+          RS_UUID=\"{{.Machine.UUID}}\"\nexport RS_TOKEN=\"{{.GenerateToken}}\"\n\n#
+          Ubuntu Path is different than Centos Path - fix it.\nexport PATH=$PATH:/usr/bin:/usr/sbin:/bin:/sbin\n\nINSTANCEID=$(curl
+          -sfL -H \"Metadata-Flavor: Google\" http://metadata/computeMetadata/v1/instance/id)\necho
+          \"Looking for GCE Instance ID, found \\\"$INSTANCEID\\\"\"\n\nif [[ $INSTANCEID
+          != \"\" && $INSTANCEID != \"null\" ]] ; then\n    drpcli machines set $RS_UUID
+          param cloud/provider to \"GCE\" \n    drpcli machines set $RS_UUID param
+          cloud/instance-id to \"$INSTANCEID\" \n\n    value=$(curl -sfL -H \"Metadata-Flavor:
+          Google\" http://metadata/computeMetadata/v1/instance/machine-type)\n    drpcli
+          machines set $RS_UUID param cloud/instance-type to \"$value\" \n\n    value=$(curl
+          -sfL -H \"Metadata-Flavor: Google\" http://metadata/computeMetadata/v1/instance/zone)\n
+          \   drpcli machines set $RS_UUID param cloud/placement/availability-zone
+          to \"$value\" \n\n    value=$(curl -sfL -H \"Metadata-Flavor: Google\" http://metadata/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip)\n
+          \   drpcli machines set $RS_UUID param cloud/public-ipv4 to \"$value\" \n\n
+          \   unset value\nelse\n    echo \"Could not find a GCE Instance ID - Skipping\"\nfi\nexit
+          0\n"
+        ID: ""
+        Meta: null
+        Name: discover-gce-metadata
+        Path: ""
+      Validated: false
+    gohai:
+      Available: false
+      Description: Get basic system inventory using Gohai
+      Documentation: |
+        Sets Param: gohai-inventory
+
+        Collect inventory from machines using drpcli gohai command
+        and store the result in the gohai-inventory Param on the machine.
+
+        If you want to disable this behavior, set the gohai/skip Param to true.
+
+        Hint: this can be A LOT of data added to the machine param!  You may
+        want to use ?slim in the API to skip returning it on list requests.
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: search
+        title: Digital Rebar Community Content
+      Name: gohai
+      OptionalParams:
+      - gohai/skip
+      - gohai-inventory
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: |
+          #!/usr/bin/env bash
+          {{if .Param "gohai/skip" -}}
+            echo "Skipping drpcli gohai because Param gohai/skip is true"
+          {{else -}}
+            echo "Running drpcli gohai (skip by setting gohai/skip to true)"
+            drpcli machines set {{.Machine.UUID}} param gohai-inventory to '{}'
+            if drpcli gohai --help >/dev/null 2>/dev/null ; then
+              drpcli gohai | drpcli machines set {{.Machine.UUID}} param gohai-inventory to -
+            else
+              gohai | drpcli machines set {{.Machine.UUID}} param gohai-inventory to -
+            fi
+          {{end -}}
+        ID: ""
+        Meta: null
+        Name: gohai
+        Path: ""
+      Validated: false
+    machine-meta-setter:
+      Available: false
+      Description: A task to set the color and icon for a machine
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: info
+      Name: machine-meta-setter
+      OptionalParams:
+      - machine-meta/color
+      - machine-meta/icon
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: machine-meta-setter.sh.tmpl
+        Meta: null
+        Name: Set Icons
+        Path: ""
+      Validated: false
+    set-hostname:
+      Available: false
+      Description: A task to set the hostname
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: key
+        title: Digital Rebar Community Content
+      Name: set-hostname
+      OptionalParams: []
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: set-hostname.sh.tmpl
+        Meta: null
+        Name: Set the hostname on the machine
+        Path: ""
+      Validated: false
+    ssh-access:
+      Available: false
+      Description: A task to put root ssh keys in place
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: key
+        title: Digital Rebar Community Content
+      Name: ssh-access
+      OptionalParams:
+      - access-keys
+      - access-ssh-root-mode
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: access-keys.sh.tmpl
+        Meta: null
+        Name: Put access keys in place for root user
+        Path: ""
+      Validated: false
+    ubuntu-drp-only-repos:
+      Available: false
+      Description: A task to force the node to switch to DRP hosted-only ubuntu repos.
+      Documentation: ""
+      Endpoint: ""
+      Errors: []
+      Meta:
+        color: blue
+        feature-flags: sane-exit-codes
+        icon: key
+        title: Digital Rebar Community Content
+      Name: ubuntu-drp-only-repos
+      OptionalParams:
+      - local-repo
+      ReadOnly: false
+      RequiredParams: []
+      Templates:
+      - Contents: ""
+        ID: ubuntu-drp-only-repos.sh.tmpl
+        Meta: null
+        Name: Force node to install from drp hosted repos
+        Path: ""
+      Validated: false
+  templates:
+    access-keys.sh.tmpl:
+      Available: false
+      Contents: |
+        #!/bin/bash
+        #
+        # This template populates the root's authorized keys file
+        # and makes sure that the sshd config for PermitRootLogin is populated.
+        #
+        # Runs as part of a shell script for kickstart or net-post-install
+        # The template does nothing if access-keys is undefined
+        #
+        # Required Parameters: access-keys
+        # Optional Parameters: access-ssh-root-mode
+        #
+        # Parameter YAML format:
+        #
+        # access-keys:
+        #   greg:  ssh-rsa key
+        #   greg2:  ssh-rsa key
+        # access-ssh-root-mode: "without-password|yes|no|forced-commands-only"
+        #
+        # Defaults:
+        # access-keys - empty
+        # access-ssh-root-mode - defaults to "without-password" if unspecified
+        #
+
+        {{if .ParamExists "access-keys"}}
+        KEYS=/root/.ssh/authorized_keys
+        TMP_KEYS=$(mktemp /tmp/authorized_keys.tmp.XXXXXXX)
+        echo "Putting ssh access keys for root in place"
+        mkdir -p /root/.ssh
+        cat >>$KEYS <<EOFSSHACCESS
+        {{range $key := .Param "access-keys" -}}
+        {{$key}}
+        {{end -}}
+        EOFSSHACCESS
+        # if the we are called multiple times we get duplicate keys, lets fix that
+        cat $KEYS | sort -u > $TMP_KEYS
+        [[ -s "$TMP_KEYS" ]] && cp $TMP_KEYS $KEYS
+        [[ -f "$TMP_KEYS" ]] && rm -f $TMP_KEYS
+        chmod 600 $KEYS
+        {{end}}
+
+        echo "Updating SSHD default values"
+        sed --in-place -r -e '/^#?PermitRootLogin/ s/^#//' -e '/^#?PermitRootLogin/ s/prohibit-password/{{if .ParamExists "access-ssh-root-mode"}}{{.Param "access-ssh-root-mode"}}{{else}}without-password{{end}}/' /etc/ssh/sshd_config
+
+        # Restart sshd but os badness.
+        . /etc/os-release
+        # Ignore error because we may run in a place that doesn't have ssh installed
+        if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]] ; then
+            echo "Restarting ssh"
+            service ssh restart || true
+        else
+            echo "Restarting sshd"
+            service sshd restart || true
+        fi
+
+        echo "Finished updating access keys successfully"
+        exit 0
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: access-keys.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    centos-7.ks.tmpl:
+      Available: false
+      Contents: |
+        # DigitalRebar Provision Centos-7 (and related distros) kickstart
+
+        {{range .InstallRepos}}
+        {{ .Install }}
+        {{end}}
+        # key --skip
+        # Disable geolocation for language and timezone
+        # Currently broken by https://bugzilla.redhat.com/show_bug.cgi?id=1111717
+        # geoloc 0
+        timezone --utc UTC
+        lang en_US.UTF-8
+        keyboard us
+        # rebar
+        rootpw --iscrypted {{if .ParamExists "provisioner-default-password-hash"}}{{.Param "provisioner-default-password-hash"}}{{else}}$6$drprocksdrprocks$upAIK9ynEEdFmaxJ5j0QRvwmIu2ruJa1A1XB7GZjrnYYXXyNr4qF9FttxMda2j.cmh.TSiLgn4B/7z0iSHkDC1{{end}}
+        firewall --disabled
+        authconfig --enableshadow --enablemd5
+        selinux --disabled
+
+        bootloader --location=mbr {{if .ParamExists "operating-system-disk"}}--driveorder={{.Param "operating-system-disk"}}{{end}} --append="rhgb quiet"
+        zerombr
+        {{if .ParamExists "operating-system-disk"}}ignoredisk --only-use={{.Param "operating-system-disk"}}{{end}}
+        clearpart --all {{if .ParamExists "operating-system-disk"}}--drives={{.Param "operating-system-disk"}}{{end}}
+        part /boot --fstype ext4 --size=512 {{if .ParamExists "operating-system-disk"}}--ondisk={{.Param "operating-system-disk"}}{{end}}
+        part /boot/efi --fstype vfat --size=512 {{if .ParamExists "operating-system-disk"}}--ondisk={{.Param "operating-system-disk"}}{{end}}
+        part swap --recommended
+        part pv.6 --size=1 --grow {{if .ParamExists "operating-system-disk"}}--ondisk={{.Param "operating-system-disk"}}{{end}}
+        volgroup {{.Machine.ShortName}} --pesize=32768 pv.6
+        logvol / --fstype ext4 --name=lv_root --vgname={{.Machine.ShortName}} --size=1 --grow --maxsize=10240
+        text
+        reboot {{if .Param "kexec-ok" }}--kexec{{end}}
+
+        %packages
+        @core
+        trousers
+        fipscheck
+        device-mapper-multipath
+        openssh
+        curl
+        efibootmgr
+        tar
+        {{if .ParamExists "extra-packages" -}}
+        {{ range $index, $element := (.Param "extra-packages") -}}
+        {{$element}}
+        {{end -}}
+        {{end -}}
+        %end
+
+        %post
+
+        exec > /root/post-install.log 2>&1
+        set -x
+        export PS4='${BASH_SOURCE}@${LINENO}(${FUNCNAME[0]}): '
+
+        {{template "reset-workflow.tmpl" .}}
+        {{template "runner.tmpl" .}}
+
+        sync
+        %end
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: centos-7.ks.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    centos-drp-only-repos.sh.tmpl:
+      Available: false
+      Contents: |
+        #!/bin/bash
+        (cd /etc/yum.repos.d; rm -f * || :)
+
+        # Use the install repo from the provisioner for local package installation
+        cat >/etc/yum.repos.d/00-rebar.repo <<"EOFLOCALREPO"
+        {{range .MachineRepos }}
+        {{ .Lines }}
+        {{end}}
+        EOFLOCALREPO
+
+        yum -y makecache
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: centos-drp-only-repos.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    change-stage.sh.tmpl:
+      Available: false
+      Contents: |
+        #!/bin/bash
+        # DEPRECATED - do not use after v3.9
+        echo "{{ "this is deprecated!" | upper | repeat 5 }}"
+
+        # This will contain a token appropriate for the path being
+        # used below.  Either a create or update/show token
+        {{template "setup.tmpl" .}}
+
+        # Get current stage
+        CURRENT_STAGE=$(drpcli machines show ${RS_UUID} | jq .Stage -r)
+        echo "Machine's current stage: $CURRENT_STAGE"
+
+        declare -A DATA
+
+        cs() { drpcli machines stage "${RS_UUID}" "$1" --force || exit $? }
+
+        {{if .ParamExists "change-stage/map"}}
+        {{ range $key, $value := (.Param "change-stage/map")}}
+        DATA["{{$key}}"]="{{$value}}"
+        {{end}}
+        {{end}}
+
+        if [[ ${DATA["$CURRENT_STAGE"]} == "" ]]; then
+            cs none
+            exit $?
+        fi
+        echo "Checking for data: $CURRENT_STAGE from ${DATA["$CURRENT_STAGE"]}"
+        IFS=':' read -r -a array <<< "${DATA["$CURRENT_STAGE"]}"
+        if [[ ${array[0]} == "" ]] ; then
+            drpcli machines stage "${RS_UUID}" "none" --force
+            exit $?
+        fi
+        NEWSTAGE="${array[0]}"
+        case ${array[1]} in
+            Success) cs $NEWSTAGE && exit 0;;
+            Reboot) cs $NEWSTAGE && exit_reboot;;
+            Stop) cs $NEWSTAGE && exit_stop;;
+            "") cs $NEWSTAGE && exit 0;;
+            *) echo "No idea how to handle exit action ${array[1]}"
+               exit 1;;
+        esac
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: change-stage.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    default-elilo.tmpl:
+      Available: false
+      Contents: |-
+        delay=2
+        timeout=20
+        verbose=5
+        image={{.Env.PathFor "tftp" .Env.Kernel}}
+        initrd={{.Env.JoinInitrds "tftp"}}
+        append={{.BootParams}}
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: default-elilo.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    default-grub.tmpl:
+      Available: false
+      Contents: |-
+        menuentry "{{.Env.Name}}" {
+            linux (tftp)/{{.Env.PathFor "tftp" .Env.Kernel}} {{.Env.BootParams}} BOOTIF=01-${net_default_mac}
+        {{range $initrd := .Env.Initrds}}
+            initrd (tftp)/{{$.Env.PathFor "tftp" $initrd}}
+        {{end}}
+        }
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: default-grub.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    default-ipxe.tmpl:
+      Available: false
+      Contents: |
+        #!ipxe
+        kernel {{.Env.PathFor "http" .Env.Kernel}} {{.BootParams}} BOOTIF=01-${netX/mac:hexhyp}
+        {{range $initrd := .Env.Initrds}}
+        initrd {{$.Env.PathFor "http" $initrd}}
+        {{end}}
+        boot
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: default-ipxe.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    default-pxelinux.tmpl:
+      Available: false
+      Contents: |
+        DEFAULT {{.Env.Name}}
+        PROMPT 0
+        TIMEOUT 10
+        LABEL {{.Env.Name}}
+          KERNEL {{.Env.PathFor "tftp" .Env.Kernel}}
+          {{if .Env.Initrds}}
+          INITRD {{.Env.JoinInitrds "tftp"}}
+          {{end}}
+          APPEND {{.BootParams}}
+          IPAPPEND 2
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: default-pxelinux.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    kexec.tmpl:
+      Available: false
+      Contents: |-
+        kernel {{.Env.PathFor "http" .Env.Kernel}}
+        {{range $initrd := .Env.Initrds}}
+        initrd {{$.Env.PathFor "http" $initrd}}
+        {{end}}
+        params {{.BootParams}}
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: kexec.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    machine-meta-setter.sh.tmpl:
+      Available: false
+      Contents: |+
+        #!/usr/bin/env bash
+        # Set the Machine Meta: Icon and Color
+
+        set -e
+
+        {{template "setup.tmpl" .}}
+
+        {{if .ParamExists "machine-meta/color" -}}
+        COLOR={{.Param "machine-meta/color"}}
+        {{else -}}
+        COLOR="black"
+        {{end -}}
+
+        {{if .ParamExists "machine-meta/icon" -}}
+        ICON={{.Param "machine-meta/icon"}}
+        {{else -}}
+        ICON="server"
+        {{end -}}
+
+        echo "Setting the Color to $COLOR and Icon to $ICON"
+
+        # do work!
+        drpcli machines update $RS_UUID "{\"Meta\":{\"color\":\"$COLOR\", \"icon\": \"$ICON\"}}" | jq .Meta
+
+        echo "Finished successfully"
+        exit 0
+
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: machine-meta-setter.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    net-post-install.sh.tmpl:
+      Available: false
+      Contents: |
+        #!/bin/sh
+        # Copyright 2016, RackN
+        #
+        # Licensed under the Apache License, Version 2.0 (the "License");
+        # you may not use this file except in compliance with the License.
+        # You may obtain a copy of the License at
+        #
+        #  http://www.apache.org/licenses/LICENSE-2.0
+        #
+        # Unless required by applicable law or agreed to in writing, software
+        # distributed under the License is distributed on an "AS IS" BASIS,
+        # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        # See the License for the specific language governing permissions and
+        # limitations under the License.
+        #
+
+        set -x
+        exec >>/target/root/post-install.log
+        exec 2>&1
+
+        mount /proc /target/proc
+
+        cat > /target/update_system2.sh <<'EOF2341'
+        #!/bin/bash
+        set -x
+        export PS4='${BASH_SOURCE}@${LINENO}(${FUNCNAME[0]}): '
+
+        wget "{{.Machine.Url}}/seed" -O /var/log/provision.seed
+
+        {{template "reset-workflow.tmpl" .}}
+        {{template "runner.tmpl" .}}
+
+        EOF2341
+
+        chmod +x /target/update_system2.sh
+        chroot /target /update_system2.sh
+        sync
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: net-post-install.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    net-seed.tmpl:
+      Available: false
+      Contents: |
+        # Rebar seed file for Debian/Ubuntu installs
+        # Locale and Language Settings
+        d-i debian-installer/locale string en_US.UTF-8
+        d-i console-setup/ask_detect boolean false
+        d-i console-setup/layoutcode string us
+        d-i keyboard-configuration/xkb-keymap select us
+        d-i debian-installer/locale string en_US.UTF-8
+        d-i console-tools/archs select at
+        d-i console-keymaps-at/keymap select American English
+        d-i debian-installer/keymap string us
+        d-i keyboard-configuration/toggle select No toggling
+
+        # Serial Console
+        d-i debian-installer/serial-console boolean true
+        d-i finish-install/keep-consoles boolean true
+
+        # Network Configuration
+        d-i netcfg/choose_interface select auto
+        d-i netcfg/dhcp_timeout string 120
+        d-i netcfg/get_hostname string {{.Machine.ShortName}}
+        {{if .ParamExists "dns-domain" -}}
+        d-i netcfg/get_domain string {{.Param "dns-domain"}}
+        {{end}}
+
+        d-i mirror/country string manual
+        {{range .InstallRepos -}}
+        {{ .Install }}
+        {{end -}}
+
+        {{if .ParamExists "proxy-servers" -}}
+        d-i mirror/http/proxy string {{index (.Param "proxy-servers") 0}}
+        {{else -}}
+        d-i mirror/http/proxy string
+        {{end -}}
+
+        # Clock
+        d-i clock-setup/utc boolean true
+        {{if .ParamExists "ntp-servers" -}}
+        d-i clock-setup/ntp boolean true
+        d-i clock-setup/ntp-server string {{index (.Param "ntp-servers") 0}}
+        {{else -}}
+        d-i clock-setup/ntp boolean false
+        {{end -}}
+        d-i time/zone string UTC
+
+        # Partitioner Label Default (GPT)
+        d-i partman/choose_label string gpt
+        d-i partman-basicfilesystems/choose_label string gpt
+        d-i partman-partitioning/choose_label string gpt
+        d-i partman/default_label string gpt
+        d-i partman-basicfilesystems/default_label string gpt
+        d-i partman-partitioning/default_label string gpt
+        # Partitioner Prompt Confirmations
+        d-i partman-auto/purge_lvm_from_device boolean true
+        d-i partman-md/confirm boolean true
+        d-i partman-md/device_remove_md boolean true
+        d-i partman-md/confirm_nochanges boolean true
+        d-i partman-md/confirm_nooverwrite boolean true
+        d-i partman-lvm/confirm boolean true
+        d-i partman-lvm/device_remove_lvm boolean true
+        d-i partman-lvm/device_remove_lvm_span boolean true
+        d-i partman-lvm/confirm_nochanges boolean true
+        d-i partman-lvm/confirm_nooverwrite boolean true
+        d-i partman-basicfilesystems/no_swap boolean false
+        #Partitioning Scheme
+        {{if .ParamExists "part-scheme" -}}
+        {{$templateName := (printf "part-scheme-%s.tmpl" (.Param "part-scheme")) -}}
+        {{.CallTemplate $templateName .}}
+        {{else -}}
+        {{template "part-scheme-default.tmpl" .}}
+        {{end -}}
+        d-i partman/confirm_write_new_label boolean true
+        d-i partman/choose_partition select finish
+        d-i partman/confirm boolean true
+        d-i partman/confirm_nooverwrite boolean true
+
+        {{if (and (eq "ubuntu" .Env.OS.Family)  (lt "12.10" .Env.OS.Version)) -}}
+        d-i live-installer/net-image string {{.Env.InstallUrl}}/install/filesystem.squashfs
+        {{end -}}
+
+        # Default User Setup
+        d-i passwd/make-user boolean true
+        d-i passwd/user-uid string {{if .ParamExists "provisioner-default-uid"}}{{.Param "provisioner-default-uid"}}{{else}}1000{{end}}
+        d-i passwd/user-fullname string {{if .ParamExists "provisioner-default-fullname"}}{{.Param "provisioner-default-fullname"}}{{else if .ParamExists "provisioner-default-user"}}{{.Param "provisioner-default-user"}}{{else}}Rocket Skates{{end}}
+        d-i passwd/username string {{if .ParamExists "provisioner-default-user"}}{{.Param "provisioner-default-user"}}{{else}}rocketskates{{end}}
+        d-i passwd/user-password-crypted password {{if .ParamExists "provisioner-default-password-hash"}}{{.Param "provisioner-default-password-hash"}}{{else}}$6$drprocksdrprocks$upAIK9ynEEdFmaxJ5j0QRvwmIu2ruJa1A1XB7GZjrnYYXXyNr4qF9FttxMda2j.cmh.TSiLgn4B/7z0iSHkDC1{{end}}
+        d-i user-setup/allow-password-weak boolean true
+        d-i user-setup/encrypt-home boolean false
+
+        d-i debian-installer/allow_unauthenticated string true
+        tasksel tasksel/first multiselect standard, server
+        d-i pkgsel/include string openssh-server curl efibootmgr {{if .ParamExists "extra-packages"}}{{ range $index, $element := (.Param "extra-packages") }}{{if $index}} {{end}}{{$element}}{{end}}{{end}}
+        d-i pkgsel/update-policy select none
+
+        {{if .ParamExists "kernel-console"}}d-i debian-installer/add-kernel-opts string {{.Param "kernel-console"}}{{end}}
+        # Completion questions
+        d-i cdrom-detect/eject boolean false
+        d-i finish-install/reboot_in_progress note
+
+        xserver-xorg xserver-xorg/autodetect_monitor boolean true
+        xserver-xorg xserver-xorg/config/monitor/selection-method select medium
+        xserver-xorg xserver-xorg/config/monitor/mode-list select 1024x768 @ 60 Hz
+
+        d-i preseed/late_command string wget {{.Machine.Url}}/post-install.sh -O /target/net-post-install.sh ; chmod +x /target/net-post-install.sh ; /target/net-post-install.sh
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: net-seed.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    part-scheme-default.tmpl:
+      Available: false
+      Contents: |
+        {{if .ParamExists "operating-system-disk" -}}
+        d-i partman-auto/disk string /dev/{{.Param "operating-system-disk"}}
+        d-i grub-installer/choose_bootdev select /dev/{{.Param "operating-system-disk"}}
+        d-i grub-installer/bootdev string /dev/{{.Param "operating-system-disk"}}
+        {{else -}}
+        d-i partman-auto/disk string /dev/sda
+        d-i grub-installer/choose_bootdev select /dev/sda
+        d-i grub-installer/bootdev string /dev/sda
+        {{end -}}
+        d-i partman-auto/method string lvm
+        d-i partman-auto-lvm/guided_size string max
+        d-i partman-auto-lvm/new_vg_name string {{.Machine.ShortName}}
+        d-i partman-auto/choose_recipe select atomic
+        d-i grub-installer/only_debian boolean true
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: part-scheme-default.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    profile.tmpl:
+      Available: false
+      Contents: "#!/usr/local/bin/env bash\n###\n#  This is a BASH script snippet
+        intended to be run inside other BASH templates.\n#\n#  This relies upon /etc/rs-uuid
+        set during sledgehammer bring up.  Using\n#  this file allows for the script
+        to work with known and unknown machines.\n#  \n#  Simple helper to add an
+        /etc/profile.d/drpcli.sh helper variables.\n#\n#         \\{\\{template \"profile.tmpl\"
+        .\\}\\}\n#\n#  without the backslashes.\n###\n\nset -e\n\ncat > /etc/profile.d/drpcli.sh
+        \ <<EOF\nexport RS_ENDPOINT=\"{{.ApiURL}}\"\nexport RS_UUID=\"$(cat /etc/rs-uuid)\"\nEOF\n\n"
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: profile.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    reset-workflow.tmpl:
+      Available: false
+      Contents: |
+        #!/usr/bin/env bash
+
+        {{template "setup.tmpl" .}}
+
+        # One day Reset the workflow chain here as well
+
+        v=$(drpcli machines get "{{.Machine.UUID}}" param "start-over" --aggregate | jq -r .)
+        if [[ "$v" == "false" ]] ; then
+            # Reset the current task list and mark the machine runnable.
+            drpcli machines remove "{{.Machine.UUID}}" param "start-over" 2>/dev/null >/dev/null || true
+            drpcli machines update "{{.Machine.UUID}}" '{ "Runnable": true }'
+        else
+            # Reset the current task list and mark the machine runnable.
+            drpcli machines update "{{.Machine.UUID}}" '{ "Runnable": true, "CurrentTask": -1 }'
+        fi
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: reset-workflow.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    runner.tmpl:
+      Available: false
+      Contents: |+
+        #!/usr/bin/env bash
+
+        {{template "setup.tmpl" .}}
+
+        # Create a temp workspace
+        temp_dir="$(mktemp -d)"
+        cd "$temp_dir"
+
+        drpcli machines processjobs "{{.Machine.UUID}}"
+
+        rm -rf "$temp_dir"
+
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: runner.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    select-kickseed.tmpl:
+      Available: false
+      Contents: |
+        {{/*
+        #
+        # This template allows the operator to use the default Kickstart or
+        # Preseed installation configuration file, or the operator may specify
+        # an alternate kickstart/preseed file to use for local customizations.
+        #
+        # To use, simply create a Param called "select-kickseed" with the value
+        # set to the template you wish to use.  You must specify the correct
+        # template file and type for your Operating System install.  For example,
+        # for CentOS, select a Kickstart; and for Ubuntu, a preseed.
+        #
+        # The param ('select-kickseed') can be applied to a Machine, or to a Profile
+        # which is subsequently applied to a machine.  Remember the 'global' profile
+        # applies to all machines provisioned by Digital Rebar Provision.
+        #
+        # Required Paramters:  none
+        # Optional Paramters:  select-kickseed
+        #
+        # Defaults:
+        #   select-seed:  empty
+        #
+        # Example (applies globally to all Machines):
+        #   drpcli profiles set global param select-kickseed to "my-net-seed.tmpl"
+        #
+        */}}
+        {{if .ParamExists "select-kickseed" -}}
+          {{$selectKickSeed := (printf "%s" (.Param "select-kickseed")) -}}
+          {{.CallTemplate $selectKickSeed .}}
+        {{else -}}
+          {{if (eq "redhat" .Env.OS.Family) -}} {{template "centos-7.ks.tmpl" .}} {{end -}}
+          {{if (eq "centos" .Env.OS.Family) -}} {{template "centos-7.ks.tmpl" .}} {{end -}}
+          {{if (eq "debian" .Env.OS.Family) -}} {{template "net-seed.tmpl" .}} {{end -}}
+          {{if (eq "ubuntu" .Env.OS.Family) -}} {{template "net-seed.tmpl" .}} {{end -}}
+        {{end -}}
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: select-kickseed.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    set-hostname.sh.tmpl:
+      Available: false
+      Contents: |+
+        #!/bin/bash
+        #
+        # This template populates the HOSTNAME of the system in various places.
+        # It also exports the HOSTNAME variable for use by other templates.
+        #
+        # Runs as part of a shell script for kickstart or net-post-install
+        #
+        # Required Parameters:
+        # Optional Parameters:
+        #
+        # Parameter YAML format:
+        #
+        # Defaults:
+        #
+        HOSTNAME="{{.Machine.Name}}"
+
+        if [ -f /etc/sysconfig/network ] ; then
+            sed -i -e "s/HOSTNAME=.*/HOSTNAME=${HOSTNAME}/" /etc/sysconfig/network
+        fi
+        echo "${HOSTNAME#*.}" >/etc/domainname
+        echo "$HOSTNAME" >/etc/hostname
+        hostname "$HOSTNAME"
+        export HOSTNAME
+
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: set-hostname.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    setup.tmpl:
+      Available: false
+      Contents: |
+        #!/usr/local/bin/env bash
+        # Helper to setup DRP tasks for other templates
+        #
+        ###
+        #  This is a BASH script snippet intended to be run inside other BASH templates.
+        #
+        #  Simple helper to prep a system with DRPCLI and JQ.  If not already installed,
+        #  download and install the `drpcli` and `jq` binaries in /usr/local/bin and then
+        #  source our `helper` tools
+        #
+        #  To use this in other templates, simply specify:
+        #
+        #         \{\{template "setup.tmpl" .\}\}
+        #
+        #  without the backslashes.
+        ###
+
+        set -e
+        ###
+        #  if we want debugging of our scripts, set the Param to true
+        #  also set shell variable for script reuse if desired for further
+        #  debugging
+        ###
+        {{ if .ParamExists "rs-debug-enable" }}
+        {{ if eq (.Param "rs-debug-enable") true }}
+        # use in shell as: [[ $RS_DEBUG_ENABLE ]] && echo "debugging"
+        RS_DEBUG_ENABLE="{{.Param "rs-debug-enable"}}"
+        set -x
+        {{ end }}
+        {{ end }}
+
+        # We pretty much always need these parameters set, but
+        # don't overwrite them if they already exist.
+        [[ $RS_TOKEN ]] || export RS_TOKEN="{{.GenerateInfiniteToken}}"
+        [[ $RS_ENDPOINT ]] || export RS_ENDPOINT="{{.ApiURL}}"
+        [[ $RS_UUID ]] || export RS_UUID="{{.Machine.UUID}}"
+
+        function fixup_path() {
+          local _add_path
+          for _add_path in $(echo $* | sed 's/[:,]/ /g')
+          do
+            mkdir -p $_add_path
+            # inject colons to avoid partial match failures
+            grep -q ":$_add_path" <<< ":$PATH:" || export PATH="$PATH:$_add_path"
+          done
+        }
+
+        fixup_path /usr/local/bin /usr/sbin /sbin /opt/bin
+
+        arch=$(uname -m)
+        case $arch in
+            x86_64|amd64) arch="amd64";;
+            arm64|aarch64) arch="arm64";;
+            *)
+                echo "Unknown arch $(uname -m)"
+                exit 1;;
+        esac
+
+        INSTALL_DIR=/usr/local/bin
+        if grep -q coreos /etc/os-release ; then
+          INSTALL_DIR=/opt/bin
+        fi
+        mkdir -p $INSTALL_DIR
+
+        # TODO: we need to make drpcli/jq grab smarter to be a little
+        #       more tolerant of OS arch/type - and grab the right one
+        for tool in drpcli jq; do
+            which "$tool" &>/dev/null && continue
+            echo "Installing $tool in $INSTALL_DIR"
+            case $tool in
+                drpcli) curl -gsfLo "$INSTALL_DIR/$tool" "{{.ProvisionerURL}}/files/drpcli.$arch.linux";;
+                jq)     curl -gsfLo "$INSTALL_DIR/$tool" "{{.ProvisionerURL}}/files/jq";;
+            esac
+            chmod 755 "$INSTALL_DIR/$tool"
+        done
+        unset tool
+        unset INSTALL_DIR
+
+        if [[ -r ./helper ]]; then
+            . ./helper
+            __sane_exit
+        fi
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: setup.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false
+    ubuntu-drp-only-repos.sh.tmpl:
+      Available: false
+      Contents: |
+        #!/bin/bash
+
+        export LC_ALL=C LANGUAGE=C LANG=C
+        export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+        cat >/etc/apt/sources.list <<"EOFLOCALREPO"
+        {{range .MachineRepos }}
+        {{ .Lines }}
+        {{end}}
+        EOFLOCALREPO
+
+        apt-get -y --force-yes update
+      Description: ""
+      Endpoint: ""
+      Errors: []
+      ID: ubuntu-drp-only-repos.sh.tmpl
+      Meta: {}
+      ReadOnly: false
+      Validated: false

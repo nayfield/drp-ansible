@@ -1,6 +1,6 @@
 Name:           dr-provision
 Version:        3.12.0
-Release:        5%{?dist}
+Release:        9%{?dist}
 Summary:        Digital Rebar Provision
 License:        Apache
 URL:            https://github.com/digitalrebar/provision
@@ -46,6 +46,18 @@ install assets/startup/dr-provision.service $RPM_BUILD_ROOT/etc/systemd/system/d
 
 
 %changelog
+* Tue Mar 19 2019 PHB - 3.12.0-9
+- grr uri syntax
+
+* Tue Mar 19 2019 PHB - 3.12.0-8
+- yeslocal content default
+
+* Tue Mar 19 2019 PHB - 3.12.0-7
+- yeslocal content dir
+
+* Tue Mar 19 2019 PHB - 3.12.0-6
+- nolocal content dir
+
 * Tue Mar 19 2019 PHB - 3.12.0-5
 - dynamically patch ourspot
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-buildtgt=centos7
+buildtgt=MYcentos7
 
 case "$1" in
     list)
