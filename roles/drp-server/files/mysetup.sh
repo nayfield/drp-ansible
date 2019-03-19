@@ -31,7 +31,7 @@ if $drpcli stages exists $stage
 then
     echo Stage centos exists
 else
-    cat ~/MYsetup/nor | /app/PXE/drp-bin/$drpcli stages create - >/dev/null
+    cat ~/MYsetup/nor | $drpcli stages create - >/dev/null
 fi
 
 # Workflows
