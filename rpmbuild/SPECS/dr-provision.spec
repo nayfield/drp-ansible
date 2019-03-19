@@ -1,6 +1,6 @@
 Name:           dr-provision
 Version:        3.12.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Digital Rebar Provision
 License:        Apache
 URL:            https://github.com/digitalrebar/provision
@@ -10,15 +10,12 @@ Patch0: 	drp-change-path.patch
 
 
 # This is where we install to.
-# NOTE this doesn't change our patch.
-# maybe-TODO: make patch a token and sed in prep
 %global ourspot /app/PXE
 
-# TODO:
-#  1. run as DRP user not root
+# TODO: run as DRP user not root
 #   requires setcap, change in unit, and perms on drp-data dir
 
-#needed?   BuildRequires:  unzip
+BuildRequires:  unzip
 Requires:       p7zip
 Requires:	bsdtar
 
@@ -28,15 +25,13 @@ Digital Rebar provision
 %prep
 %setup -c
 %patch0 -p1
-
-#  # %build 
-#  #  This should apply patches to initscript
-#  #  For our locations and UID
+sed -i 's:OURSPOT:%{ourspot}:g' assets/startup/dr-provision.service
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/%{ourspot}/drp-bin
 install -d $RPM_BUILD_ROOT/%{ourspot}/drp-data 
+install -d $RPM_BUILD_ROOT/%{ourspot}/drp-local
 install -d $RPM_BUILD_ROOT/%{ourspot}/drp-data/tftpboot
 install -d $RPM_BUILD_ROOT/etc/systemd/system
 install bin/linux/amd64/* $RPM_BUILD_ROOT/%{ourspot}/drp-bin
@@ -51,6 +46,9 @@ install assets/startup/dr-provision.service $RPM_BUILD_ROOT/etc/systemd/system/d
 
 
 %changelog
+* Tue Mar 19 2019 PHB - 3.12.0-5
+- dynamically patch ourspot
+
 * Tue Mar 19 2019 PHB - 3.12.0-4
 - global location var
 

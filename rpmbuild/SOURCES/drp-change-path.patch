@@ -1,12 +1,12 @@
-diff -ru BUILD/assets/startup/dr-provision.service NEW/assets/startup/dr-provision.service
---- BUILD/assets/startup/dr-provision.service	2018-12-17 12:36:31.000000000 -0500
-+++ NEW/assets/startup/dr-provision.service	2019-03-19 12:41:05.395074139 -0400
+diff -ru orig/assets/startup/dr-provision.service dr-provision-3.12.0/assets/startup/dr-provision.service
+--- orig/assets/startup/dr-provision.service	2018-12-17 12:36:31.000000000 -0500
++++ dr-provision-3.12.0/assets/startup/dr-provision.service	2019-03-19 13:37:09.782888773 -0400
 @@ -4,7 +4,7 @@
  After=network.target
  
  [Service]
 -ExecStart=/usr/local/bin/dr-provision
-+ExecStart=/app/PXE/drp-bin/dr-provision --base-root=/app/PXE/drp-data
++ExecStart=OURSPOT/drp-bin/dr-provision --base-root=OURSPOT/drp-data --local-content=OURSPOT/drp-local --default-content=""
  LimitNOFILE=1048576
  LimitNPROC=1048576
  LimitCORE=infinity
