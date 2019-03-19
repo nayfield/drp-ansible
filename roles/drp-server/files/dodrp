@@ -2,22 +2,22 @@
 
 buildtgt=MYcentos7
 
+
 case "$1" in
-    list)
-        drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow + " " + .Stage'
+    listall)
+        drpcli machines list | jq -r '.[] | .Uuid + " " + .BootEnv'
         ;;
-    listd)
-        drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow' |grep discovery
+    listready)
+        drpcli machines list | jq -r '.[] | select(.Stage == "sledgehammer-wait") | .Uuid'
         ;;
-    build)
+    buildone)
         drpcli machines workflow $2 $buildtgt
         ;;
-    delete)
+    deleteone)
         drpcli machines destroy $2 
         ;;
-    buildall)
-        for mach in $(drpcli machines list | jq -r '.[] | .Uuid + " " + .Workflow' \
-                      | grep discovery$ | awk '{print $1}' ) ; do
+    buildready)
+        for mach in $(drpcli machines list | jq -r '.[] | select(.Stage == "sledgehammer-wait") | .Uuid') ; do
             drpcli machines workflow $mach $buildtgt
         done
         ;;
@@ -31,7 +31,7 @@ case "$1" in
 
 
     *)
-        echo "Usage: $0 {list|listd|build|buildall|delete|deleteall}"
+        echo "Usage: $0 {list|listready|buildready|deletelall|buildone x|deleteone x}"
         exit 1
 
 esac
