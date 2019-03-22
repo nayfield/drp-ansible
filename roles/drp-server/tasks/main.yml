@@ -1,4 +1,50 @@
 ---
+- name: add epel
+  become: yes
+  package:
+    name:
+        - epel-release
+
+- name: install required packages
+  become: yes
+  package:
+    name:
+        - p7zip
+        - bsdtar
+        - aria2
+        - jq
+        - golang
+        - lbzip2
+
+# My privnet is 10.10.10/24 
+# and eth1.  ymmv.  
+# The network is also used later for dhcp subnet config.
+- name: static network config eth1
+  become: yes
+  lineinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-eth1
+    regexp: "^BOOTPROTO="
+    line: "BOOTPROTO=none"
+    state: present
+  notify: restart network
+
+- name: static ip eth1
+  become: yes
+  blockinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-eth1
+    block: |
+        IPADDR=10.10.10.3
+        PREFIX=24
+    marker: "# {mark} ANSIBLE MANAGED"
+  notify: restart network
+
+- name: disable firewall
+  become: yes
+  systemd:
+    name: firewalld
+    enabled: no
+    state: stopped
+
 - name: send our RPM over
   become: yes
   copy:
@@ -52,13 +98,14 @@
   args:
         creates: ~/.ssh/id_rsa.pub
 
-- name: dodrp helper script
-  copy:
-    src: files/dodrp
-    dest: ~/bin/dodrp
-    mode: 0755
+- name: user scripts for by-hand playing
+  copy: src=files/{{ item }} dest=~/bin mode=0755
+  with_items:
+        - dodrp
+        - loopit.sh
 
 # Setup has been moved to script with some files.
+# All of the below can be done via the API
 
 - name: copy mysetup
   copy:

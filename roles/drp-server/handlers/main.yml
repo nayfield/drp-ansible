@@ -1,4 +1,15 @@
 ---
+- name: restart ssh
+  become: yes
+  service:
+    name: sshd
+    state: restarted
+
+- name: restart network
+  become: yes
+  service:
+    name: network
+    state: restarted
 
 - name: run mysetup
   command: ~/bin/mysetup.sh

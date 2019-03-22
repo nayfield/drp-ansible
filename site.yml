@@ -10,5 +10,4 @@
         - role: setup-drp
           tags:
             - firstrun
-        - role: drp-server-root
         - role: drp-server
