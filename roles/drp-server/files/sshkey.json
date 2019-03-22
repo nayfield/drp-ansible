@@ -1,7 +1,7 @@
 {
   "Params": {
     "access-keys": {
-      "root": "ssh-rsa xxx xxxx"
+      "root": "SSHKEYHERE"
     }
   }
 }

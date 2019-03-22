@@ -61,7 +61,9 @@ fi
 
 
 # These just override so we don't check
-cat ~/MYsetup/sshkey.json | $drpcli profiles update global - >/dev/null
+MYKEY=$(cat ~/.ssh/id_rsa.pub)
+cat ~/MYsetup/sshkey.json |sed "s:SSHKEYHERE:$MYKEY:" | $drpcli profiles update global - >/dev/null
+
 $drpcli prefs set defaultWorkflow MYdiscovery unknownBootEnv discovery defaultBootEnv sledgehammer defaultStage discover
 
 exit 0

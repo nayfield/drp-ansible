@@ -47,6 +47,11 @@
     src: /app/PXE/drp-bin/drpcli 
     state: link
 
+- name: ensure drpuser has ssh key
+  command: ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ""
+  args:
+        creates: ~/.ssh/id_rsa.pub
+
 - name: dodrp helper script
   copy:
     src: files/dodrp
